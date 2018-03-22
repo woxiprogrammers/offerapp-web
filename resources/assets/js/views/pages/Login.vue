@@ -10,16 +10,17 @@
                 <p class="text-muted">Sign In to your account</p>
                 <div class="input-group mb-1">
                   <span class="input-group-addon"><i class="icon-user"></i></span>
-                  <input type="text" class="form-control" placeholder="Username">
+                  <input type="text"  v-model="mobile_no" class="form-control" placeholder="Mobile No">
                 </div>
                 <div class="input-group mb-2">
                   <span class="input-group-addon"><i class="icon-lock"></i></span>
-                  <input type="password" class="form-control" placeholder="Password">
+                  <input type="password" v-model="password" class="form-control" placeholder="Password">
                 </div>
-                <div class="row">
+                <form class="row" v-on:submit="login()">
                   <div class="col-6">
                     <button type="button" class="btn btn-primary px-2">Login</button>
                   </div>
+                </form>
                   <div class="col-6 text-right">
                     <button type="button" class="btn btn-link px-0">Forgot password?</button>
                   </div>
@@ -39,11 +40,27 @@
         </div>
       </div>
     </div>
-  </div>
+  <!--</div>-->
 </template>
 
 <script>
 export default {
-  name: 'Login'
+  name: 'Login',
+  data: function () {
+      return {
+          mobile_no: '',
+          password: '',
+      }
+  },
+    methods:{
+      login(){
+          console.log("click on login");
+        if(this.mobile_no == 'arvind' && this.password == 'secret'){
+            alert("Success");
+        }else{
+            alert("failure");
+        }
+      }
+    }
 }
 </script>

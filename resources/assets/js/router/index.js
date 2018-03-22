@@ -31,127 +31,127 @@ import Register from '../views/pages/Register';
 Vue.use(Router);
 
 export default new Router({
-  mode: 'hash', // hash or hash = Demo is living in GitHub.io, so required!
-  linkActiveClass: 'open active',
-  scrollBehavior: () => ({ y: 0 }),
-  routes: [
-    {
-      path: '/',
-      redirect: '/dashboard',
-      name: 'Home',
-      component: Full,
-      children: [
+    mode: 'hash', // hash or hash = Demo is living in GitHub.io, so required!
+    linkActiveClass: 'open active',
+    scrollBehavior: () => ({ y: 0 }),
+    routes: [
         {
-          path: 'dashboard',
-          name: 'Dashboard',
-          component: Dashboard
+            path: '/',
+            redirect: '/dashboard',
+            name: 'Home',
+            component: Full,
+            children: [
+                {
+                    path: 'dashboard',
+                    name: 'Dashboard',
+                    component: Dashboard
+                },
+                {
+                    path: 'charts',
+                    name: 'Charts',
+                    component: Charts
+                },
+                {
+                    path: 'widgets',
+                    name: 'Widgets',
+                    component: Widgets
+                },
+                {
+                    path: 'components',
+                    redirect: '/components/buttons',
+                    name: 'Components',
+                    component: {
+                        render (c) { return c('router-view'); }
+                    },
+                    children: [
+                        {
+                            path: 'buttons',
+                            name: 'Buttons',
+                            component: Buttons
+                        },
+                        {
+                            path: 'social-buttons',
+                            name: 'Social Buttons',
+                            component: SocialButtons
+                        },
+                        {
+                            path: 'cards',
+                            name: 'Cards',
+                            component: Cards
+                        },
+                        {
+                            path: 'forms',
+                            name: 'Forms',
+                            component: Forms
+                        },
+                        {
+                            path: 'modals',
+                            name: 'Modals',
+                            component: Modals
+                        },
+                        {
+                            path: 'switches',
+                            name: 'Switches',
+                            component: Switches
+                        },
+                        {
+                            path: 'tables',
+                            name: 'Tables',
+                            component: Tables
+                        }
+                    ]
+                },
+                {
+                    path: 'icons',
+                    redirect: '/icons/font-awesome',
+                    name: 'Icons',
+                    component: {
+                        render (c) { return c('router-view'); }
+                    },
+                    children: [
+                        {
+                            path: 'font-awesome',
+                            name: 'Font Awesome',
+                            component: FontAwesome
+                        },
+                        {
+                            path: 'simple-line-icons',
+                            name: 'Simple Line Icons',
+                            component: SimpleLineIcons
+                        }
+                    ]
+                }
+            ]
         },
         {
-          path: 'charts',
-          name: 'Charts',
-          component: Charts
-        },
-        {
-          path: 'widgets',
-          name: 'Widgets',
-          component: Widgets
-        },
-        {
-          path: 'components',
-          redirect: '/components/buttons',
-          name: 'Components',
-          component: {
-            render (c) { return c('router-view'); }
-          },
-          children: [
-            {
-              path: 'buttons',
-              name: 'Buttons',
-              component: Buttons
+            path: '/pages',
+            redirect: '/pages/p404',
+            name: 'Pages',
+            component: {
+                render (c) { return c('router-view'); }
             },
-            {
-              path: 'social-buttons',
-              name: 'Social Buttons',
-              component: SocialButtons
-            },
-            {
-              path: 'cards',
-              name: 'Cards',
-              component: Cards
-            },
-            {
-              path: 'forms',
-              name: 'Forms',
-              component: Forms
-            },
-            {
-              path: 'modals',
-              name: 'Modals',
-              component: Modals
-            },
-            {
-              path: 'switches',
-              name: 'Switches',
-              component: Switches
-            },
-            {
-              path: 'tables',
-              name: 'Tables',
-              component: Tables
-            }
-          ]
-        },
-        {
-          path: 'icons',
-          redirect: '/icons/font-awesome',
-          name: 'Icons',
-          component: {
-            render (c) { return c('router-view'); }
-          },
-          children: [
-            {
-              path: 'font-awesome',
-              name: 'Font Awesome',
-              component: FontAwesome
-            },
-            {
-              path: 'simple-line-icons',
-              name: 'Simple Line Icons',
-              component: SimpleLineIcons
-            }
-          ]
+            children: [
+                {
+                    path: '404',
+                    name: 'Page404',
+                    component: Page404
+                },
+                {
+                    path: '500',
+                    name: 'Page500',
+                    component: Page500
+                },
+                {
+                    path: 'login',
+                    name: 'Login',
+                    component: Login
+                },
+                {
+                    path: 'register',
+                    name: 'Register',
+                    component: Register
+                }
+            ]
         }
-      ]
-    },
-    {
-      path: '/pages',
-      redirect: '/pages/p404',
-      name: 'Pages',
-      component: {
-        render (c) { return c('router-view'); }
-      },
-      children: [
-        {
-          path: '404',
-          name: 'Page404',
-          component: Page404
-        },
-        {
-          path: '500',
-          name: 'Page500',
-          component: Page500
-        },
-        {
-          path: 'login',
-          name: 'Login',
-          component: Login
-        },
-        {
-          path: 'register',
-          name: 'Register',
-          component: Register
-        }
-      ]
-    }
-  ]
+    ]
 });

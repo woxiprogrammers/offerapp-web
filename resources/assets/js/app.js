@@ -29,3 +29,7 @@ const app = new Vue({
     template: '<App/>',
     components: { App },
 });
+
+console.log('in lg');
+
+

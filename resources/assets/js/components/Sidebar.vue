@@ -62,10 +62,10 @@
               <router-link :to="'/pages/login'" class="nav-link" exact><i class="icon-star"></i> Login</router-link>
             </li>
             <li class="nav-item">
-                <router-link :to="'/pages/register'" class="nav-link" exact><i class="icon-star"></i> Register</router-link>
+              <router-link :to="'/pages/register'" class="nav-link" exact><i class="icon-star"></i> Register</router-link>
             </li>
             <li class="nav-item">
-                <router-link :to="'/pages/404'" class="nav-link" exact><i class="icon-star"></i> Error 404</router-link>
+              <router-link :to="'/pages/404'" class="nav-link" exact><i class="icon-star"></i> Error 404</router-link>
             </li>
             <li class="nav-item">
               <router-link :to="'/pages/500'" class="nav-link" exact><i class="icon-star"></i> Error 500</router-link>
@@ -78,15 +78,15 @@
 </template>
 <script>
 
-export default {
-  name: 'sidebar',
-  methods: {
-    handleClick (e) {
-      e.preventDefault()
-      e.target.parentElement.classList.toggle('open')
+    export default {
+        name: 'sidebar',
+        methods: {
+            handleClick (e) {
+                e.preventDefault()
+                e.target.parentElement.classList.toggle('open')
+            }
+        }
     }
-  }
-}
 </script>
 
 <style lang="css">

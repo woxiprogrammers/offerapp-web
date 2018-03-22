@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Laravel - CoreUI Example</title>
+    <title>OfferApp</title>
     
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
@@ -38,7 +38,9 @@
     -->
 </head>
 <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
-	<div id="app"></div>
-  	<script src="{{ mix('js/app.js') }}"></script>
+	<div id="app">
+
+    </div>
+  	<script type="application/javascript;version=1" src="{{mix('js/app.js')}}"></script>
 </body>
 </html>
