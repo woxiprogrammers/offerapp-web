@@ -17,6 +17,21 @@
         "nunomaduro/collision": "^2.0",
         "phpunit/phpunit": "^7.0"
     },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "mrholek/CoreUI-Free-Bootstrap-Admin-Template",
+                "version": "dev-24d9a64",
+                "source": {
+                    "url": "https://github.com/mrholek/CoreUI-Free-Bootstrap-Admin-Template.git",
+                    "type": "git",
+                    "reference": "24d9a64"
+                }
+
+            }
+        }
+    ],
     "autoload": {
         "classmap": [
             "database/seeds",
