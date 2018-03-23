@@ -74,38 +74,35 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN LOGIN -->
         <div class="content">
             <!-- BEGIN REGISTRATION FORM -->
-            <form class="register-form" action="#" method="post">
+            <form class="register-form" action="{{route('home')}}" method="post">
               {{ csrf_field() }}
-                <h3>Sign Up</h3>
+                <h3>Registeration Step 3</h3>
                 <p> Enter your personal details below: </p>
 
-                {{--<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}" id="name">
-                    <label class="control-label visible-ie8 visible-ie9">User Type</label>
-                    <div >
-                        <i class="fa fa-users"></i>
-                        <input type="radio" name="type" id="type1" value="vendor" checked> Vendor   &nbsp;</input>
-                        <i class="fa fa-user"></i>
-                        <input type="radio" name="type" id="type2" value="customer" > Customer </input>
-
-                        @if ($errors->has('name'))
-                          <span class="help-block alert-danger">
-                            <strong>{{ $errors->first('name') }}</strong>
-                          </span>
-                        @endif
-                      </div>
-                </div>--}}
-
-                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}" id="name">
+                <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}" id="first_name">
                     <label class="control-label visible-ie8 visible-ie9">Full Name</label>
                     <div class="input-icon">
                         <i class="fa fa-font"></i>
-                        <input class="form-control placeholder-no-fix" type="text" placeholder="Full Name" name="name" />
-                        @if ($errors->has('name'))
+                        <input class="form-control placeholder-no-fix" type="text" placeholder="First Name" name="first_name" />
+                        @if ($errors->has('first_name'))
                           <span class="help-block alert-danger">
-                            <strong>{{ $errors->first('name') }}</strong>
+                            <strong>{{ $errors->first('first_name') }}</strong>
                           </span>
                         @endif
                       </div>
+                </div>
+
+                <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}" id="last_name">
+                    <label class="control-label visible-ie8 visible-ie9">Last Name</label>
+                    <div class="input-icon">
+                        <i class="fa fa-user"></i>
+                        <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Last Name" name="last_name" />
+                        @if ($errors->has('last_name'))
+                            <span class="help-block alert-danger">
+                            <strong>{{ $errors->first('last_name') }}</strong>
+                          </span>
+                        @endif
+                    </div>
                 </div>
 
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}" id="email">
@@ -121,69 +118,6 @@ License: You must have a valid license purchased only from themeforest(the above
                         @endif
                       </div>
                 </div>
-                <div class="vendorInfo">
-                  <p> Enter the vendor details below:</p>
-
-                  <div class="form-group{{ $errors->has('shopName') ? ' has-error' : '' }}" id="shopName">
-                      <div class="input-icon">
-                        <i class="fa fa-font"></i>
-                          <input class="form-control placeholder-no-fix" type="text" placeholder="Shop Name" name="shopName"  />
-                          @if ($errors->has('shopName'))
-                            <span class="help-block alert-danger">
-                              <strong>{{ $errors->first('shopName') }}</strong>
-                            </span>
-                          @endif
-                      </div>
-                  </div>
-
-                  <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}" id="address">
-                      <div class="input-icon">
-                        <i class="fa fa-font"></i>
-                          <input class="form-control placeholder-no-fix" type="text" placeholder="Shop Address" name="address" />
-                          @if ($errors->has('address'))
-                            <span class="help-block alert-danger">
-                              <strong>{{ $errors->first('address') }}</strong>
-                            </span>
-                          @endif
-                      </div>
-                  </div>
-                  <div class="form-group{{ $errors->has('zipcode') ? ' has-error' : '' }}" id="zipCode">
-                      <div class="input-icon">
-                        <i class="fa fa-font"></i>
-                          <input class="form-control placeholder-no-fix" type="text" placeholder="Zip Code" name="zipCode"  />
-                          @if ($errors->has('zipcode'))
-                            <span class="help-block alert-danger">
-                              <strong>{{ $errors->first('zipcode') }}</strong>
-                            </span>
-                          @endif
-                      </div>
-                  </div>
-                  <div class="form-group{{ $errors->has('website') ? ' has-error' : '' }}" id="website">
-                      <div class="input-icon">
-                        <i class="fa fa-globe"></i>
-                          <input class="form-control placeholder-no-fix" type="text" placeholder="http://www.mywebsite.com" name="website"  />
-                          @if ($errors->has('website'))
-                            <span class="help-block alert-danger">
-                              <strong>{{ $errors->first('website') }}</strong>
-                            </span>
-                          @endif
-                      </div>
-                  </div>
-                </div>
-
-                <p> Enter your account details below: </p>
-                <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}" id="username">
-                    <label class="control-label visible-ie8 visible-ie9">Username</label>
-                    <div class="input-icon">
-                        <i class="fa fa-user"></i>
-                        <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Username" name="username" />
-                        @if ($errors->has('username'))
-                          <span class="help-block alert-danger">
-                            <strong>{{ $errors->first('username') }}</strong>
-                          </span>
-                        @endif
-                      </div>
-                </div>
 
                 <div class="form-group{{ $errors->has('mobile_no') ? ' has-error' : '' }}" id="mobile_no">
                     <label class="control-label visible-ie8 visible-ie9">Mobile.No</label>
@@ -191,13 +125,12 @@ License: You must have a valid license purchased only from themeforest(the above
                         <i class="fa fa-mobile"></i>
                         <input class="form-control placeholder-no-fix" type="text" autocomplete="off" id="register_mobile_no" placeholder="Mobile .No" name="mobile_no" />
                         @if ($errors->has('mobile_no'))
-                          <span class="help-block alert-danger">
+                            <span class="help-block alert-danger">
                             <strong>{{ $errors->first('mobile_no') }}</strong>
                           </span>
                         @endif
-                      </div>
+                    </div>
                 </div>
-
                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}" id="password">
                     <label class="control-label visible-ie8 visible-ie9">Password</label>
                     <div class="input-icon">
@@ -236,7 +169,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div id="register_tnc_error"> </div>
                 </div> -->
                 <div class="form-actions">
-                    <a href="{{route('login')}}" class="btn red btn-outline"> Back </a>
+                    <a href="{{route('register-step-2')}}" class="btn red btn-outline"> Back </a>
                     <button type="submit" id="register-submit-btn" class="btn green pull-right"> Sign Up </button>
                 </div>
             </form>
