@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -28,8 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
-    protected $sellerRole = '3';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -47,14 +47,31 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+
+    public function register(Request $request)
+    {
+
+        //Validates data
+        $this->validator($request->all())->validate();
+
+        //Create user
+        $user = $this->create($request->all());
+
+        //Authenticates user
+        $this->guard()->login($user);
+
+        //Redirects user
+        return redirect($this->redirectTo);
+    }
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'email' => 'string|email|max:255|unique:users,email,'.$data->id,
-            'password' => 'required|string|min:6|confirmed',
-            'mobile_no' => 'required|regex:/[0-9]/|unique:users,mobile,'.$data->id,
+            'email' => 'string|email|max:255',
+            'password' => 'required|string|min:6',
+            'mobile_no' => 'required',
         ]);
     }
 
@@ -66,14 +83,25 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        //$sellerRoleId = Role::where('slug','seller')->pluck('id')->first();
+
         return User::create([
-            'role_id' => '3',
+            'role_id' => 3,
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'mobile_no' => $data['mobile_no'],
             'email' => $data['email'],
-            'profile_picture' => $data['profile_picture'],
-            'password' => Hash::make($data['password']),
+            'profile_picture' => 'avatar9.jpg',
+            'password' => bcrypt($data['password']),
         ]);
+    }
+
+    protected function guard()
+    {
+        return Auth::guard();
+    }
+
+    protected function login($user){
+        return Auth::attempt(['mobile_no' => $user->mobile_no, 'password' => $user->password]);
     }
 }

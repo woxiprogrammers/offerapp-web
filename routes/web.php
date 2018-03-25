@@ -11,22 +11,56 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::group(['middleware' => ['auth']], function () {
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
+    Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/register/step1', function () {
-    return view('auth.RegisterStep1');
-})->name('register-step-1');
+    Route::get('/logout', ['uses' => 'Auth\LoginController@logout'])->name('logout');
 
-Route::get('/register/step2', function () {
-    return view('auth.RegisterStep2');
-})->name('register-step-2');
+});
 
-Route::get('/register/step3', function () {
-    return view('auth.RegisterStep3');
-})->name('register-step-3');
+Route::group(['middleware' => ['web']], function (){
+
+    Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
+    Route::post('login',['uses' => 'Auth\LoginController@login'])->name('login');
+
+    Route::post('login',['uses' => 'Auth\RegisterController@register'])->name('register');
+
+//Auth::routes();
+
+    Route::get('/register/step1', function () {
+        return view('auth.RegisterStep1');
+    })->name('register-step-1');
+
+    Route::post('/register/step2', 'OtpVerification@getOtp')->name('register-step-2');
+
+    Route::get('/register/step2', function () {
+        return view('auth.RegisterStep2');
+    })->name('register-step-2');
+
+    Route::post('/register/step3', 'OtpVerification@verifyOtp')->name('register-step-3');
+
+    Route::get('/register/step3', function () {
+        return view('auth.RegisterStep3');
+    })->name('register-step-3');
+
+    Route::post('/register/step1', function () {
+        return view('auth.RegisterStep1');
+    })->name('register-step-1');
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+

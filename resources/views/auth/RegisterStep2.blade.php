@@ -68,7 +68,7 @@ window.Laravel = <?php echo json_encode([
     <!-- BEGIN LOGIN -->
     <div class="content">
     <!-- BEGIN REGISTERATION STEP 2 FORM -->
-    <form action="{{route('register-step-3')}}" method="get">
+    <form action="{{route('register-step-3')}}" method="post">
         {{ csrf_field() }}
     <h3>Registeration Step 2</h3>
 <p> Enter your OTP send to xxxxxxxx71. </p>

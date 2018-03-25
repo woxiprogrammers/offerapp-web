@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -30,10 +32,36 @@ class LoginController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @return void.
      */
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
+    public function login(Request $request)
+    {
+        $this->validate($request, [
+            'mobile_no' => 'required|regex:/[0-9]/',
+            'password' => 'required',
+
+        ]);
+        if(Auth::attempt(['mobile_no' => $request->input('mobile_no'), 'password' => $request->input('password')])){
+            $user = Auth::user();
+            //dd($user);
+            return redirect('/');
+        }else{
+            dd('wrong');
+        }
+    }
+
+
+
+
 }

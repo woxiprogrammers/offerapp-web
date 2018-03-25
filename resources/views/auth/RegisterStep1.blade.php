@@ -68,8 +68,11 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN LOGIN -->
         <div class="content">
             <!-- BEGIN REGISTERATION STEP 1 FORM -->
-            <form action="{{route('register-step-2')}}" method="get">
+            <form action="{{route('register-step-2')}}" method="post">
                 {{ csrf_field() }}
+                @if(isset($error))
+
+                @endif
                 <h3>Registeration Step 1</h3>
                 <p> Enter your Mobile No. below to get OTP. </p>
                 <div class="form-group">
@@ -78,7 +81,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Mobile No." name="mobile_no" /> </div>
                 </div>
                 <div class="form-actions">
-                    <a href="{{route('login')}}" class="btn red btn-outline"> Back </a>
+                    <a href="#" class="btn red btn-outline"> Back </a>
                     <button type="submit" class="btn green pull-right"> Get OTP </button>
                 </div>
             </form>

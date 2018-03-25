@@ -74,7 +74,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN LOGIN -->
         <div class="content">
             <!-- BEGIN REGISTRATION FORM -->
-            <form class="register-form" action="{{route('home')}}" method="post">
+            <form class="register-form" action="{{route('register')}}" method="post">
               {{ csrf_field() }}
                 <h3>Registeration Step 3</h3>
                 <p> Enter your personal details below: </p>
