@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
@@ -35,5 +38,24 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function login(Request $request){
+        try{
+            $credentials = $request->except('_token');
+            if(Auth::attempt($credentials)){
+                return redirect('/home');
+            }else{
+                $request->session()->flash('error','Invalid Credentials');
+                return redirect('/');
+            }
+        }catch (\Exception $e){
+            $data = [
+                'action' => 'Login',
+                'exception' => $e->getMessage(),
+                'params' => $request->all()
+            ];
+            Log::critical(json_encode($data));
+        }
     }
 }
