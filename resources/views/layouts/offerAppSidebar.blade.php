@@ -52,9 +52,9 @@
                 <h3 class="uppercase">Features</h3>
             </li>
             <li class="nav-item  ">
-                <a href="javascript:;" class="nav-link nav-toggle">
+                <a href="/offer/manage" class="nav-link nav-toggle">
                     <i class="icon-puzzle"></i>
-                    <span class="title">Create Offer</span>
+                    <span class="title"> Offer</span>
                     <span class=""></span>
                 </a>
             </li>
