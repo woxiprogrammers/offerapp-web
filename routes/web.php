@@ -30,3 +30,5 @@ Route::get('/register/step2', function () {
 Route::get('/register/step3', function () {
     return view('auth.RegisterStep3');
 })->name('register-step-3');
+
+Route::get('/sellerListing', 'SuperAdmin\SellerController@sellerListing')->name('sellerListing');

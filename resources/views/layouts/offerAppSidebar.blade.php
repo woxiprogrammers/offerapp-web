@@ -40,16 +40,43 @@
                 </form>
                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
             </li>
-            <li class="nav-item start active open">
-                <a href="javascript:;" class="nav-link nav-toggle">
+            <li class="nav-item ">
+                <a href="{{ route('home') }}" class="nav-link nav-toggle">
                     <i class="icon-home"></i>
                     <span class="title">Dashboard</span>
                     <span class="selected"></span>
-                    <span class=" open"></span>
+                    <span class=" "></span>
                 </a>
             </li>
             <li class="heading">
-                <h3 class="uppercase">Features</h3>
+                <h3 class="uppercase">Super Admin Features</h3>
+            </li>
+            <li class="nav-item  ">
+                <a href="{{ route('sellerListing') }}" class="nav-link nav-toggle">
+                    <i class="fa fa-users"></i>
+                    <span class="title">Manage Seller</span>
+                    <span class="arrow"></span>
+                </a>
+            </li>
+
+            <li class="nav-item  ">
+                <a href="{{ route('sellerListing') }}" class="nav-link nav-toggle">
+                    <i class="icon-briefcase"></i>
+                    <span class="title">Manage Offer</span>
+                    <span class="arrow"></span>
+                </a>
+            </li>
+
+            <li class="nav-item  ">
+                <a href="{{ route('sellerListing') }}" class="nav-link nav-toggle">
+                    <i class="fa fa-user"></i>
+                    <span class="title">Manage Customer</span>
+                    <span class="arrow"></span>
+                </a>
+            </li>
+
+            <li class="heading">
+                <h3 class="uppercase">Seller Features</h3>
             </li>
             <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">

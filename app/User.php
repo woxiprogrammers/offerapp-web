@@ -30,4 +30,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function isSeller()
+    {
+        return $this->hasOne('App\Seller', 'user_id');
+    }
+
+    public function isCustomer()
+    {
+        return $this->hasOne('App\Customer');
+    }
 }

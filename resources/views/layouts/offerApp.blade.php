@@ -51,6 +51,10 @@ License: You must have a valid license purchased only from themeforest(the above
         <link href="../assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
         <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <link href="../assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+        <link href="../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+        <!-- END PAGE LEVEL PLUGINS -->
 
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" /> </head>
@@ -116,6 +120,15 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="../assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
         <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <script src="../assets/global/scripts/datatable.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+        <script src="../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN PAGE LEVEL SCRIPTS -->
+        <script src="../assets/custom/superadmin/seller/listing/table-datatables-editable.js" type="text/javascript"></script>
+
+        <!-- END PAGE LEVEL SCRIPTS -->
     </body>
 
 </html>
