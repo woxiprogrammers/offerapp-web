@@ -7,13 +7,14 @@ var $hello= $('#path');
 $hello.on("change", function(event, path,count){
     if (typeof path !== "undefined") {
         $.ajax({
-            url: "/offer/display-images",
+            url: "/offer/display-images?_token="+$("input[name='_token']").val(),
             data: {'path':path,'count':count},
             async:false,
             error: function(data) {
                 alert('something went wrong');
             },
             success: function(data, textStatus, xhr) {
+                console.log('inside sucess');
                 $('#show-product-images').append(data);
             },
             type: 'POST'

@@ -27,16 +27,20 @@ class UsersTableSeeder extends Seeder
                 'role_id' => $superAdminRoleId,
                 'first_name' => 'Super',
                 'last_name' => 'Admin',
-                'mobile_no' => '5555568696',
+                'password' => bcrypt('superadmin'),
+                'email' => 'superadmin@gmail.com',
+                'mobile_no' => '1111111111',
                 'created_at' => $now,
                 'updated_at' => $now
 
             ],
             [
                 'role_id' => $moderatorRoleId,
-                'first_name' => 'Rakesh',
-                'last_name' => 'Verma',
-                'mobile_no' => '9821648696',
+                'first_name' => 'Moderator',
+                'last_name' => ' ',
+                'password' => bcrypt('moderator'),
+                'email' => 'moderator@gmail.com',
+                'mobile_no' => '2222222222',
                 'created_at' => $now,
                 'updated_at' => $now
 
@@ -45,7 +49,9 @@ class UsersTableSeeder extends Seeder
                 'role_id' => $sellerRoleId,
                 'first_name' => 'Sonali',
                 'last_name' => 'Pawar',
-                'mobile_no' => '5656564896',
+                'password' => bcrypt('sonali'),
+                'email' => 'sonali@gmail.com',
+                'mobile_no' => '3333333333',
                 'created_at' => $now,
                 'updated_at' => $now
 
@@ -55,7 +61,9 @@ class UsersTableSeeder extends Seeder
                 'role_id' => $sellerRoleId,
                 'first_name' => 'Arvind',
                 'last_name' => 'Chawdhary',
-                'mobile_no' => '1234567890',
+                'password' => bcrypt('arvind'),
+                'email' => 'arvind@gmail.com',
+                'mobile_no' => '4444444444',
                 'created_at' => $now,
                 'updated_at' => $now
 
@@ -64,7 +72,9 @@ class UsersTableSeeder extends Seeder
                 'role_id' => $customerRoleId,
                 'first_name' => 'Tejas',
                 'last_name' => 'Rathod',
-                'mobile_no' => '8082448845',
+                'password' => bcrypt('tejas'),
+                'email' => 'tejas@gmail.com',
+                'mobile_no' => '5555555555',
                 'created_at' => $now,
                 'updated_at' => $now
             ],
@@ -72,13 +82,12 @@ class UsersTableSeeder extends Seeder
                 'role_id' => $customerRoleId,
                 'first_name' => 'Annu',
                 'last_name' => 'Gupta',
-                'mobile_no' => '8884567890',
+                'password' => bcrypt('annu'),
+                'email' => 'annu@gmail.com',
+                'mobile_no' => '6666666666',
                 'created_at' => $now,
                 'updated_at' => $now
-
             ]
-
-
-            ]);
+        ]);
     }
 }
