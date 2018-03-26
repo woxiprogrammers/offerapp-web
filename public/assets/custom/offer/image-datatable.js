@@ -1,5 +1,5 @@
 /**
- * Created by Ameya Joshi on 28/6/17.
+ * Created by Harsha on 28/6/17.
  */
 
 var OfferImageUpload = function() {
@@ -9,7 +9,7 @@ var OfferImageUpload = function() {
                 runtimes: "html5,html4",
                 browse_button: document.getElementById("tab_images_uploader_pickfiles"),
                 container: document.getElementById("tab_images_uploader_container"),
-                url: "/offer/image-upload",
+                url: "/offer/image-upload?_token="+$("input[name='_token']").val(),
                 async:false,
                 multi_selection : true,
                 filters: {
