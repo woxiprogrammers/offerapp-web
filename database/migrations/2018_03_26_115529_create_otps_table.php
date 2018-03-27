@@ -13,7 +13,7 @@ class CreateOtpsTable extends Migration
      */
     public function up()
     {
-        Schema::create('otps', function (Blueprint $table) {
+        Schema::create('otp_verification', function (Blueprint $table) {
             $table->increments('id');
             $table->string('mobile_no');
             $table->string('otp');
@@ -28,6 +28,6 @@ class CreateOtpsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('otps');
+        Schema::dropIfExists('otp_verification');
     }
 }
