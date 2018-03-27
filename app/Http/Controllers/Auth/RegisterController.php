@@ -51,29 +51,49 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
+        try{
+            //Validates data
+            $this->validator($request->all())->validate();
 
-        //Validates data
-        $this->validator($request->all())->validate();
+            //Create user
+            $user = $this->createUser($request->all());
 
-        //Create user
-        $user = $this->createUser($request->all());
+            //Authenticates user
+            $credentials = $request->except('mobile_no', 'password');
+            Auth::attempt($credentials);
 
-        //Authenticates user
-        $this->guard()->login($user);
+            //Redirects user
+            return redirect($this->redirectTo);
+        }catch (\Exception $e){
+            $data = [
+                'action' => 'register user',
+                'exception' => $e->getMessage(),
+                'params' => $request->all()
+            ];
+            Log::critical(json_encode($data));
+        }
 
-        //Redirects user
-        return redirect($this->redirectTo);
     }
 
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'string|email|max:255',
-            'password' => 'required|string|min:6',
-            'mobile_no' => 'required',
-        ]);
+        try{
+            return Validator::make($data, [
+                'first_name' => 'required|string|max:255',
+                'last_name' => 'required|string|max:255',
+                'email' => 'string|email|max:255',
+                'password' => 'required|string|min:6',
+                'mobile_no' => 'required',
+            ]);
+        }catch(\Exception $e){
+            $input = [
+                'action' => 'validate user',
+                'exception' => $e->getMessage(),
+                'params' => $data->all()
+            ];
+            Log::critical(json_encode($input));
+        }
+
     }
 
     /**
@@ -84,24 +104,27 @@ class RegisterController extends Controller
      */
     protected function createUser(array $data)
     {
-        $sellerRoleId = Role::where('slug','seller')->pluck('id')->first();
+        try{
+            $sellerRoleId = Role::where('slug','seller')->pluck('id')->first();
 
-        return User::create([
-            'role_id' => $sellerRoleId,
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'mobile_no' => $data['mobile_no'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+            return User::create([
+                'role_id' => $sellerRoleId,
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'mobile_no' => $data['mobile_no'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+            ]);
+        }catch(\Exception $e){
+            $input = [
+                'action' => 'create user',
+                'exception' => $e->getMessage(),
+                'params' => $data->all()
+            ];
+            Log::critical(json_encode($input));
+        }
+
     }
 
-    protected function guard()
-    {
-        return Auth::guard();
-    }
 
-    protected function login($user){
-        return Auth::attempt(['mobile_no' => $user->mobile_no, 'password' => $user->password]);
-    }
 }

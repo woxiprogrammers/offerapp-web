@@ -68,7 +68,7 @@ window.Laravel = <?php echo json_encode([
     <!-- BEGIN LOGIN -->
     <div class="content">
     <!-- BEGIN REGISTERATION STEP 2 FORM -->
-    <form action="{{route('register-step-3')}}" method="post">
+    <form action="{{route('verifiy-otp')}}" method="post">
         {{ csrf_field() }}
     <h3>Registeration Step 2</h3>
         @if(isset($error))
@@ -89,7 +89,7 @@ window.Laravel = <?php echo json_encode([
 
 </div>
     <div class="form-actions">
-        <a href="{{route('register-step-1')}}" class="btn red btn-outline"> Back </a>
+        <a href="{{route('get-mobile_no')}}" class="btn red btn-outline"> Back </a>
     <button type="submit" class="btn green pull-right"> Verify OTP </button>
 </div>
 </form>

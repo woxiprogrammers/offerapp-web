@@ -10,6 +10,19 @@ use Illuminate\Support\Facades\Log;
 class OtpVerification extends Controller
 {
 
+    public function getMobileNO(){
+        try{
+            return view('auth.RegisterStep1');
+        }catch (\Exception $e){
+            $data = [
+                'action' => 'get mobile no',
+                'exception' => $e->getMessage(),
+            ];
+
+            Log::critical(json_encode($data));
+        }
+    }
+
     public function getOtp(Request $request){
         try{
             $mobile_no = $request['mobile_no'];
@@ -58,12 +71,13 @@ class OtpVerification extends Controller
         }
     }
 
+
     public function verifyOtp(Request $request){
         try{
-
             $mobile_no = $request['mobile_no'];
             $otp = Otp::where('mobile_no',$request['mobile_no'])->pluck('otp')->last();
-            if($otp == $request['otp']) {
+            $userotp = $request['otp'];
+            if($otp == $userotp) {
                 return view('auth.RegisterStep3');
             }
             else{

@@ -68,7 +68,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN LOGIN -->
         <div class="content">
             <!-- BEGIN REGISTERATION STEP 1 FORM -->
-            <form action="{{route('register-step-2')}}" method="post">
+            <form action="{{route('get-otp')}}" method="post">
                 {{ csrf_field() }}
 
                 <h3>Registeration Step 1</h3>

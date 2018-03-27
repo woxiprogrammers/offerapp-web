@@ -23,6 +23,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        try{
+            return view('home');
+
+        }catch (\Exception $e){
+            $data = [
+                'action' => 'home View',
+                'exception' => $e->getMessage(),
+            ];
+            Log::critical(json_encode($data));
+        }
     }
 }

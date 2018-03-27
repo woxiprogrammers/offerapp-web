@@ -132,7 +132,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
                 <div class="create-account">
                     <p> Don't have an account yet ?&nbsp;
-                        <a href="{{route('register-step-1')}}" > Create an account </a>
+                        <a href="{{route('get-mobile_no')}}" > Create an account </a>
                     </p>
                 </div>
             </form>

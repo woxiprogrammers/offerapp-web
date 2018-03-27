@@ -174,7 +174,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div id="register_tnc_error"> </div>
                 </div> -->
                 <div class="form-actions">
-                    <a href="{{route('register-step-1')}}" class="btn red btn-outline"> Back </a>
+                    <a href="{{route('get-mobile_no')}}" class="btn red btn-outline"> Back </a>
                     <button type="submit" id="register-submit-btn" class="btn green pull-right"> Sign Up </button>
                 </div>
             </form>
