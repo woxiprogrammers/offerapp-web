@@ -71,12 +71,23 @@ window.Laravel = <?php echo json_encode([
     <form action="{{route('register-step-3')}}" method="post">
         {{ csrf_field() }}
     <h3>Registeration Step 2</h3>
-<p> Enter your OTP send to xxxxxxxx71. </p>
+        @if(isset($error))
+            <span class="help-block alert-danger">
+                        <strong>{{ $error }}</strong>
+                    </span>
+        @endif
+<p> Enter your OTP send to {{ $mobile_no }}. </p>
 <div class="form-group">
+
     <div class="input-icon">
-    <i class="fa fa-mobile"></i>
-    <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="OTP" name="otp" /> </div>
-    </div>
+        <i class="fa fa-mobile"></i>
+        <input class="form-control placeholder-no-fix" type="text" autocomplete="off" value="{{ $mobile_no }}" name="mobile_no" readonly/> </div>
+
+    <div class="input-icon">
+        <i class="fa fa-user"></i>
+        <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="OTP" name="otp" /> </div>
+
+</div>
     <div class="form-actions">
         <a href="{{route('register-step-1')}}" class="btn red btn-outline"> Back </a>
     <button type="submit" class="btn green pull-right"> Verify OTP </button>
