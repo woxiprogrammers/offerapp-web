@@ -8,6 +8,7 @@ class OfferType extends Model
 {
     protected $table = 'offer_types';
 
+
     protected $fillable = ['id','name','slug'];
 
     public function offers(){
