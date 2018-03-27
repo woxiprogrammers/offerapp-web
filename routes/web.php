@@ -21,10 +21,8 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::group(['middleware' => ['web']], function (){
 
-    Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('login',['uses' => 'Auth\LoginController@login'])->name('login');
-
-    Route::post('login',['uses' => 'Auth\RegisterController@register'])->name('register');
+    Route::post('register',['uses' => 'Auth\RegisterController@register'])->name('register');
 
 //Auth::routes();
 

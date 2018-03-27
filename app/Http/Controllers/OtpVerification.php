@@ -16,8 +16,7 @@ class OtpVerification extends Controller
             if($mobile_no == null){
                 $error = "Please Enter a Valid Mobile No.";
                 return view('auth.RegisterStep1', compact('error'));
-            }
-            else{
+            }else{
 
                 $otp = $this->generateOtp();
                 $otpGen = new Otp();
@@ -47,27 +46,16 @@ class OtpVerification extends Controller
                 $response = curl_exec($ch);
                 curl_close($ch);
             }
-
-            // Process your response here
-            if(true){
-                return view('auth.RegisterStep2',compact('mobile_no'));
-            }else{
-                $error = 'Please check your internet connection or Enter a Passsword';
-                return view('auth.RegisterStep1', compact('error'));
-            }
-
+            return view('auth.RegisterStep2',compact('mobile_no'));
         }catch (\Exception $e){
             $data = [
-                'action' => 'getOtp',
+                'action' => 'get otp',
                 'exception' => $e->getMessage(),
                 'params' => $request->all()
             ];
 
             Log::critical(json_encode($data));
         }
-
-
-
     }
 
     public function verifyOtp(Request $request){
@@ -85,7 +73,7 @@ class OtpVerification extends Controller
 
         }catch(\Exception $e){
             $data = [
-                'action' => 'verifyOtp',
+                'action' => 'verify otp',
                 'exception' => $e->getMessage(),
                 'params' => $request->all()
             ];

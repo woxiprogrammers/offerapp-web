@@ -40,11 +40,6 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function showLoginForm()
-    {
-        return view('auth.login');
-    }
-
     public function login(Request $request)
     {
         $this->validate($request, [
@@ -54,14 +49,10 @@ class LoginController extends Controller
         ]);
         if(Auth::attempt(['mobile_no' => $request->input('mobile_no'), 'password' => $request->input('password')])){
             $user = Auth::user();
-            //dd($user);
             return redirect('/');
         }else{
-            dd('wrong');
+            return redirect('/login');
         }
     }
-
-
-
 
 }

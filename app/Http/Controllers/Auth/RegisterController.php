@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Role;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -55,7 +56,7 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
 
         //Create user
-        $user = $this->create($request->all());
+        $user = $this->createUser($request->all());
 
         //Authenticates user
         $this->guard()->login($user);
@@ -81,17 +82,16 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function createUser(array $data)
     {
-        //$sellerRoleId = Role::where('slug','seller')->pluck('id')->first();
+        $sellerRoleId = Role::where('slug','seller')->pluck('id')->first();
 
         return User::create([
-            'role_id' => 3,
+            'role_id' => $sellerRoleId,
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'mobile_no' => $data['mobile_no'],
             'email' => $data['email'],
-            'profile_picture' => 'avatar9.jpg',
             'password' => bcrypt($data['password']),
         ]);
     }

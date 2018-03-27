@@ -50,6 +50,11 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" />
         <!-- Scripts -->
+        <script>
+            window.Laravel = <?php echo json_encode([
+                    'csrfToken' => csrf_token(),
+                ]); ?>
+        </script>
       </head>
     <!-- END HEAD -->
 
