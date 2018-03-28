@@ -46,23 +46,29 @@
                             </div>
                             <div class="dataTables_wrapper">
                                 <div class="table-scrollable">
-                                    <table class="table table-striped table-bordered table-hover table-checkable order-column dataTable no-footer" id="offetListingTable">
+                                    <table class="table table-striped table-bordered table-hover table-checkable order-column dataTable no-footer" id="offerListingTable">
                                         <thead>
                                             <tr>
                                                 <th>
-                                                    Offer
+                                                    Offer Id
                                                 </th>
                                                 <th>
-                                                    Offer
+                                                    Offer Title
                                                 </th>
                                                 <th>
-                                                    Offer
+                                                    Start Date
                                                 </th>
                                                 <th>
-                                                    Offer
+                                                    End Date
                                                 </th>
                                                 <th>
-                                                    Offer
+                                                    Company Name
+                                                </th>
+                                                <th>
+                                                    Status
+                                                </th>
+                                                <th>
+                                                    Action
                                                 </th>
                                             </tr>
                                         </thead>
@@ -77,6 +83,18 @@
     </div>
 @endsection
 @section('javascript')
+    <script  src="/assets/global/plugins/datatables/datatables.min.js"></script>
+    <script src="/assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="/assets/global/plugins/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+    <script src="/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+    <script src="/assets/custom/offer/manage-datatable.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function() {
+            $('#offerListingTable').DataTable();
+        });
 
+    </script>
 @endsection
+
 
