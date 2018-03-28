@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
+
 class LoginController extends Controller
 {
     /*
@@ -33,25 +34,32 @@ class LoginController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @return void.
      */
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         try{
-            $credentials = $request->except('_token');
-            if(Auth::attempt($credentials)){
-                return redirect('/home');
+            $this->validate($request, [
+                'mobile_no' => 'required|regex:/[0-9]/',
+                'password' => 'required',
+
+            ]);
+            if(Auth::attempt(['mobile_no' => $request->input('mobile_no'), 'password' => $request->input('password')])){
+                $user = Auth::user();
+                return redirect('/');
             }else{
                 $request->session()->flash('error','Invalid Credentials');
-                return redirect('/');
+                return redirect('/login');
             }
-        }catch (\Exception $e){
+        }catch(\Exception $e){
             $data = [
-                'action' => 'Login',
+                'action' => 'Login user',
                 'exception' => $e->getMessage(),
                 'params' => $request->all()
             ];

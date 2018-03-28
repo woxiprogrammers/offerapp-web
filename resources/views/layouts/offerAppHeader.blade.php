@@ -75,7 +75,7 @@
                 <li class="dropdown dropdown-user">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                         <img alt="" class="img-circle" src="../assets/layouts/layout/img/avatar3_small.jpg" />
-                        <span class="username username-hide-on-mobile"> Nick </span>
+                        <span class="username username-hide-on-mobile"> {{Auth::user()->first_name}} </span>
                         <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-default">
@@ -84,7 +84,7 @@
                                 <i class="icon-user"></i> My Profile </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="{{route('logout')}}">
                                 <i class="icon-key"></i> Log Out </a>
                         </li>
                     </ul>
@@ -93,7 +93,7 @@
                 <!-- BEGIN QUICK SIDEBAR TOGGLER -->
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                 <li class="dropdown dropdown-quick-sidebar-toggler">
-                    <a href="javascript:;" class="dropdown-toggle">
+                    <a href="" class="dropdown-toggle">
                         <i class="icon-logout"></i>
                     </a>
                 </li>

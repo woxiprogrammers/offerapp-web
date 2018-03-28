@@ -867,7 +867,11 @@
                 "datetime",
                 "time"
             ],
+<<<<<<< HEAD
+            "time": "2018-03-19 15:50:49"
+=======
             "time": "2018-03-19T15:50:49+00:00"
+>>>>>>> develop
         },
         {
             "name": "nikic/php-parser",
@@ -1424,7 +1428,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jean-François Simon",
+                    "name": "Jean-Fran?ois Simon",
                     "email": "jeanfrancois.simon@sensiolabs.com"
                 },
                 {
@@ -2378,7 +2382,7 @@
             ],
             "authors": [
                 {
-                    "name": "François Zaninotto"
+                    "name": "Fran?ois Zaninotto"
                 }
             ],
             "description": "Faker is a PHP library that generates fake data for you.",
@@ -2476,7 +2480,7 @@
             ],
             "authors": [
                 {
-                    "name": "Pádraic Brady",
+                    "name": "P?draic Brady",
                     "email": "padraic.brady@gmail.com",
                     "homepage": "http://blog.astrumfutura.com"
                 },
@@ -2607,7 +2611,9 @@
                 "php",
                 "symfony"
             ],
+
             "time": "2018-03-21T20:11:24+00:00"
+
         },
         {
             "name": "phar-io/manifest",

@@ -74,9 +74,14 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN LOGIN -->
         <div class="content">
             <!-- BEGIN REGISTRATION FORM -->
-            <form class="register-form" action="{{route('home')}}" method="post">
+            <form class="register-form" action="{{route('register')}}" method="post">
               {{ csrf_field() }}
                 <h3>Registeration Step 3</h3>
+                @if (isset($success)))
+                    <span class="help-block alert-success">
+                            <strong>{{ $success }}</strong>
+                          </span>
+                @endif
                 <p> Enter your personal details below: </p>
 
                 <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}" id="first_name">
@@ -169,7 +174,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div id="register_tnc_error"> </div>
                 </div> -->
                 <div class="form-actions">
-                    <a href="{{route('register-step-2')}}" class="btn red btn-outline"> Back </a>
+                    <a href="{{route('get-mobile_no')}}" class="btn red btn-outline"> Back </a>
                     <button type="submit" id="register-submit-btn" class="btn green pull-right"> Sign Up </button>
                 </div>
             </form>

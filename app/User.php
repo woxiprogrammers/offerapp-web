@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -18,8 +19,8 @@ class User extends Authenticatable
     protected $table = 'users';
 
     protected $fillable = [
-        'id','role_id','first_name','last_name','password','email','mobile_no',
-        'profile_picture','token'];
+            'role_id','first_name','last_name','password','email','mobile_no',
+        'profile_picture'];
 
 
     /**

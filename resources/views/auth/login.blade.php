@@ -52,8 +52,8 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- Scripts -->
         <script>
             window.Laravel = <?php echo json_encode([
-                'csrfToken' => csrf_token(),
-            ]); ?>
+                    'csrfToken' => csrf_token(),
+                ]); ?>
         </script>
       </head>
     <!-- END HEAD -->
@@ -68,8 +68,10 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN LOGIN -->
         <div class="content">
             <!-- BEGIN LOGIN FORM -->
-            <form class="login-form" action="/login" method="post">
-              {{ csrf_field() }}
+
+            <form class="login-form" action="{{route('login')}}" method="post">
+                {{ csrf_field() }}
+
                 <h3 class="form-title">Login to your account</h3>
                 <div class="alert alert-danger display-hide">
                     <button class="close" data-close="alert"></button>
@@ -130,7 +132,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 </div>
                 <div class="create-account">
                     <p> Don't have an account yet ?&nbsp;
-                        <a href="{{route('register-step-1')}}" > Create an account </a>
+                        <a href="{{route('get-mobile_no')}}" > Create an account </a>
                     </p>
                 </div>
             </form>
