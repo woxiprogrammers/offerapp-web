@@ -25,17 +25,25 @@ Route::group(['middleware' => ['guest']], function (){
 
 
 Route::group(['prefix' => 'register'], function(){
-    Route::get('mobile_no','OtpVerification@getMobileNo')->name('get-mobile_no');
-    Route::post('getotp', 'OtpVerification@getOtp')->name('get-otp');
-    Route::post('verifiyotp', 'OtpVerification@verifyOtp')->name('verifiy-otp');
+    Route::get('mobile_no','Auth\OtpVerification@getMobileNo')->name('get-mobile_no');
+    Route::post('getotp', 'Auth\OtpVerification@getOtp')->name('get-otp');
+    Route::post('verifiyotp', 'Auth\OtpVerification@verifyOtp')->name('verifiy-otp');
 });
 
 Route::group(['prefix' => 'offer'], function(){
-    Route::get('manage','Offer\OfferController@getManageView');
+    Route::get('manage','Offer\OfferController@getManageView')->name('offerListing');
+    Route::post('listing','Offer\OfferControllerController@getOfferListing');
+
     Route::get('create','Offer\OfferController@getCreateView');
     Route::post('create','Offer\OfferController@createOffer');
     Route::post('image-upload',array('uses'=>'Offer\OfferController@uploadTempOfferImages'));
     Route::post('display-images',array('uses'=>'Offer\OfferController@displayOfferImages'));
     Route::post('delete-temp-product-image',array('uses'=>'Offer\OfferController@removeTempImage'));
+});
+
+Route::group(['prefix' => 'seller'], function(){
+    Route::get('manage','SuperAdmin\SellerController@getManageView')->name('sellerListing');
+    Route::post('listing','SuperAdmin\SellerController@getSellerListing');
+
 });
 

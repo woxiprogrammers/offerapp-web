@@ -1,26 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Offer;
+namespace App\Http\Controllers\SuperAdmin;
 
-use App\Http\Controllers\CustomTraits\OfferTrait;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 
-class OfferController extends Controller
+class SellerController extends Controller
 {
-use OfferTrait;
     public function __construct()
     {
-        $this->middleware('custom.auth');
+        $this->middleware('auth');
     }
 
     public function getManageView(Request $request){
         try{
-            return view('offer.manage');
+            return view('superadmin.seller.manage');
         }catch (\Exception $e){
             $data = [
-                'action' => 'Get offer manage view',
+                'action' => 'Get seller manage view',
                 'exception' => $e->getMessage()
             ];
             Log::critical(json_encode($data));
@@ -28,7 +26,7 @@ use OfferTrait;
         }
     }
 
-    public function getOfferListing(Request $request){
+    public function getSellerListing(Request $request){
         try{
 
             $records["id"] = 1;

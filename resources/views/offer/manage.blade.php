@@ -50,19 +50,25 @@
                                         <thead>
                                             <tr>
                                                 <th>
-                                                    Offer
+                                                    Id
                                                 </th>
                                                 <th>
-                                                    Offer
+                                                    Title
                                                 </th>
                                                 <th>
-                                                    Offer
+                                                    Valid from
                                                 </th>
                                                 <th>
-                                                    Offer
+                                                    Valid to
                                                 </th>
                                                 <th>
-                                                    Offer
+                                                    Shop Name
+                                                </th>
+                                                <th>
+                                                    Status
+                                                </th>
+                                                <th>
+                                                    Action
                                                 </th>
                                             </tr>
                                         </thead>
@@ -77,6 +83,12 @@
     </div>
 @endsection
 @section('javascript')
+    <script src="../assets/custom/offer/offerlisting-datatables.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#offetListingTable').DataTable();
+        });
+    </script>>
 
 @endsection
 

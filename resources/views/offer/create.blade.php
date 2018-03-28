@@ -117,14 +117,21 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div id="tab_images_uploader_filelist" class="col-md-6 col-sm-12"> </div>
+
                                         </div>
-                                        <div id="tab_images_uploader_container" class="col-md-offset-5">
+
+                                        <div id="tab_images_uploader_container" class="form-group ">
+                                            <div class="col-md-3">
+                                                <label class="control-label pull-right">
+                                                    Select Images :
+                                                </label>
+                                            </div>
                                             <a id="tab_images_uploader_pickfiles" href="javascript:;" class="btn green-meadow">
                                                 Browse</a>
                                             <a id="tab_images_uploader_uploadfiles" href="javascript:;" class="btn btn-primary">
                                                 <i class="fa fa-share"></i> Upload Files </a>
                                         </div>
-                                        <table class="table table-bordered table-hover" style="width: 700px">
+                                        <table class="table table-bordered table-hover" align="center" style="width: 700px">
                                             <thead>
                                             <tr role="row" class="heading">
                                                 <th> Image </th>
