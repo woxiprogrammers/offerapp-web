@@ -33,6 +33,7 @@ Route::get('/register/step3', function () {
 })->name('register-step-3');
 
 Route::group(['prefix' => 'offer'], function(){
+    Route::post('listing',array('uses' => 'Offer\OfferController@getlisting'));
     Route::get('manage','Offer\OfferController@getManageView');
     Route::get('create','Offer\OfferController@getCreateView');
     Route::post('create','Offer\OfferController@createOffer');

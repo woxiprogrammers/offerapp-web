@@ -31,4 +31,8 @@ class Offer extends Model
     public function parentOffer(){
         return $this->belongsTo('App\Offer','offer_id');
     }
+
+    public function offerType(){
+        return $this->belongsTo('App\OfferType','offer_type_id');
+    }
 }
