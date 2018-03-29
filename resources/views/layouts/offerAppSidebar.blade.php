@@ -40,7 +40,7 @@
                 </form>
                 <!-- END RESPONSIVE QUICK SEARCH FORM -->
             </li>
-            <li class="nav-item start active open">
+            <li class="nav-item ">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-home"></i>
                     <span class="title">Dashboard</span>
@@ -48,9 +48,39 @@
                     <span class=" open"></span>
                 </a>
             </li>
+            @if(Auth::user()->role_id == 1)
             <li class="heading">
-                <h3 class="uppercase">Features</h3>
+                <h3 class="uppercase">Super Admin Features</h3>
             </li>
+            <li class="nav-item  ">
+                <a href="{{ route('sellerListing') }}" class="nav-link nav-toggle">
+                    <i class="fa fa-users"></i>
+                    <span class="title">Manage Seller</span>
+                    <span class="arrow"></span>
+                </a>
+            </li>
+
+            <li class="nav-item  ">
+                <a href="{{ route('offerListing') }}" class="nav-link nav-toggle">
+                    <i class="icon-briefcase"></i>
+                    <span class="title">Manage Offer</span>
+                    <span class="arrow"></span>
+                </a>
+            </li>
+
+            <li class="nav-item  ">
+                <a href="{{ route('sellerListing') }}" class="nav-link nav-toggle">
+                    <i class="fa fa-user"></i>
+                    <span class="title">Manage Customer</span>
+                    <span class="arrow"></span>
+                </a>
+            </li>
+
+            @elseif(Auth::user()->role_id == 3)
+            <li class="heading">
+                <h3 class="uppercase">Seller Features</h3>
+            </li>
+
             <li class="nav-item  ">
                 <a href="/offer/manage" class="nav-link nav-toggle">
                     <i class="icon-puzzle"></i>
@@ -111,6 +141,7 @@
                             <span class="title">All Group</span>
                         </a>
                     </li>
+                    @endif
                 </ul>
             </li>
         </ul>

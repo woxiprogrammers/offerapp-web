@@ -1,10 +1,12 @@
+$('#offetListingTable').DataTable();
 var OfferListing = function () {
     var handleOrders = function () {
-        var grid = new Datatable();
-        grid.init({
-            src: $("#offerListingTable"),
-            onSuccess: function (grid) {
 
+        var grid = new Datatable();
+
+        grid.init({
+            src: $("#offetListingTable "),
+            onSuccess: function (grid) {
                 // execute some code after table records loaded
             },
             onError: function (grid) {
@@ -15,7 +17,7 @@ var OfferListing = function () {
                 // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
                 // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/scripts/datatable.js).
                 // So when dropdowns used the scrollable div should be removed.
-                "dom": "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r>t<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>",
+                //"dom": "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r>t<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>",
 
                 "lengthMenu": [
                     [50, 100, 150],
@@ -30,7 +32,8 @@ var OfferListing = function () {
                 ] // set first column as a default sort by asc
             }
         });
-        // handle group action submit button click
+
+        // handle group actionsubmit button click
         grid.getTableWrapper().on('click', '.table-group-action-submit', function (e) {
             e.preventDefault();
             var action = $(".table-group-action-input", grid.getTableWrapper());
@@ -58,16 +61,20 @@ var OfferListing = function () {
                 });
             }
         });
+
     }
+
     return {
 
         //main function to initiate the module
         init: function () {
             handleOrders();
         }
+
     };
+
 }();
+
 jQuery(document).ready(function() {
     OfferListing.init();
-
 });

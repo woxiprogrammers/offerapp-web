@@ -78,11 +78,16 @@ License: You must have a valid license purchased only from themeforest(the above
                     </span>
                 @endif
                 <p> Enter your Mobile No. below to get OTP. </p>
-                <div class="form-group">
+                <div class="form-group{{ $errors->has('mobile_no') ? ' has-error' : '' }}">
                     <div class="input-icon">
                         <i class="fa fa-mobile"></i>
                         <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Mobile No." name="mobile_no" /> </div>
                 </div>
+                @if ($errors->has('mobile_no'))
+                    <span class="help-block alert-danger">
+                            <strong>{{ $errors->first('mobile_no') }}</strong>
+                          </span>
+                @endif
                 <div class="form-actions">
                     <a href="{{ route('login') }}" class="btn red btn-outline"> Back </a>
                     <button type="submit" class="btn green pull-right"> Get OTP </button>

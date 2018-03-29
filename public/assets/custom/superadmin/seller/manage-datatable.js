@@ -1,8 +1,8 @@
-var OfferListing = function () {
+var SellerListing = function () {
     var handleOrders = function () {
         var grid = new Datatable();
         grid.init({
-            src: $("#offerListingTable"),
+            src: $("#sellerListingTable"),
             onSuccess: function (grid) {
 
                 // execute some code after table records loaded
@@ -23,7 +23,7 @@ var OfferListing = function () {
                 ],
                 "pageLength": 50, // default record count per page
                 "ajax": {
-                    "url": "/offer/listing", // ajax source
+                    "url": "/seller/listing", // ajax source
                 },
                 "order": [
                     [1, "asc"]
@@ -68,6 +68,5 @@ var OfferListing = function () {
     };
 }();
 jQuery(document).ready(function() {
-    OfferListing.init();
-
+    SellerListing.init();
 });
