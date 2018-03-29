@@ -1,12 +1,10 @@
-$('#seller-datatable').DataTable();
-var SellerListing = function () {
+var OfferListing = function () {
     var handleOrders = function () {
-
         var grid = new Datatable();
-
         grid.init({
-            src: $("#seller-datatable "),
+            src: $("#offerListingTable"),
             onSuccess: function (grid) {
+
                 // execute some code after table records loaded
             },
             onError: function (grid) {
@@ -17,7 +15,7 @@ var SellerListing = function () {
                 // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
                 // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/scripts/datatable.js).
                 // So when dropdowns used the scrollable div should be removed.
-                //"dom": "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r>t<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>",
+                "dom": "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r>t<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>",
 
                 "lengthMenu": [
                     [50, 100, 150],
@@ -25,15 +23,14 @@ var SellerListing = function () {
                 ],
                 "pageLength": 50, // default record count per page
                 "ajax": {
-                    "url": "/seller/manage", // ajax source
+                    "url": "/offer/listing", // ajax source
                 },
                 "order": [
                     [1, "asc"]
                 ] // set first column as a default sort by asc
             }
         });
-
-        // handle group actionsubmit button click
+        // handle group action submit button click
         grid.getTableWrapper().on('click', '.table-group-action-submit', function (e) {
             e.preventDefault();
             var action = $(".table-group-action-input", grid.getTableWrapper());
@@ -61,20 +58,16 @@ var SellerListing = function () {
                 });
             }
         });
-
     }
-
     return {
 
         //main function to initiate the module
         init: function () {
             handleOrders();
         }
-
     };
-
 }();
-
 jQuery(document).ready(function() {
-    SellerListing.init();
+    OfferListing.init();
+
 });

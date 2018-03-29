@@ -51,7 +51,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <link href="/assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
         <link href="/assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
         <!-- END PAGE LEVEL PLUGINS -->
-
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <!-- END THEME LAYOUT STYLES -->
         @yield('css')
         <link rel="shortcut icon" href="favicon.ico" /> </head>

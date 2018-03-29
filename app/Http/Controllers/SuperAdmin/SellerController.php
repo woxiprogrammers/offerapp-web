@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\SuperAdmin;
 
+use App\Offer;
+use App\SellerAddress;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
@@ -29,14 +31,34 @@ class SellerController extends Controller
     public function getSellerListing(Request $request){
         try{
 
-            $records["id"] = 1;
-            $records["date"] = 27-3-18;
-            $records["seller"] = seller;
-            $records["ship to"] = pune;
-            $records["price"] = 100;
-            $records["amount"] = 200;
-            $records["status"] = 'pending';
+            $sellerData = SellerAddress::get();
+            $iTotalRecords = count($sellerData);
+            $records = array();
+            $records['data'] = array();
+            $end = $request->length < 0 ? count($sellerData) : $request->length;
+            for($iterator = 0,$pagination = $request->start; $iterator < $end && $pagination < count($sellerData); $iterator++,$pagination++ ){
 
+                $actionDropDown =  '<button class="edit btn btn-sm btn-success"> 
+                                            <form action="/offer/change-status/approved/'.$sellerData[$pagination]->id.'" method="post">
+                                                <a href="javascript:void(0);" onclick="changeStatus(this)" style="color: white">
+                                                  <i class="fa fa-edit"></i>   Edit 
+                                                </a>
+                                                <input type="hidden" name="_token">
+                                            </form> 
+                                        </button>';
+
+                $records['data'][$iterator] = [
+                    $sellerData[$pagination]->seller_id,
+                    $sellerData[$pagination]->seller->user->first_name,
+                    ucwords($sellerData[$pagination]->shop_name),
+                    $sellerData[$pagination]->seller->user->email,
+                    $actionDropDown
+                ];
+            }
+            $records["draw"] = intval($request->draw);
+            $records["recordsTotal"] = $iTotalRecords;
+            $records["recordsFiltered"] = $iTotalRecords;
+            $status = 200;
 
             return response()->json($records);
         }catch (\Exception $e){
