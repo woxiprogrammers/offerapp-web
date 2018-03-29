@@ -69,7 +69,7 @@
             </li>
 
             <li class="nav-item  ">
-                <a href="{{ route('sellerListing') }}" class="nav-link nav-toggle">
+                <a href="{{ route('customerListing') }}" class="nav-link nav-toggle">
                     <i class="fa fa-user"></i>
                     <span class="title">Manage Customer</span>
                     <span class="arrow"></span>

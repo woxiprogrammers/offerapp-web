@@ -44,8 +44,8 @@
                     <div class="portlet light portlet-fit portlet-datatable bordered">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="icon-settings font-dark"></i>
-                                <span class="caption-subject font-dark sbold uppercase">Offer Datatable</span>
+                                <i class="fa fa-cubes font-green-haze"></i>
+                                <span class="caption-subject font-green-haze sbold uppercase">Offer Datatable</span>
                             </div>
 
                             <div class="table-toolbar">
