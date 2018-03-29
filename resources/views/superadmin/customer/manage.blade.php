@@ -29,7 +29,7 @@
                         <i class="fa fa-circle"></i>
                     </li>
                     <li>
-                        <a href="{{ route('sellerListing') }}">Seller</a>
+                        <a href="{{ route('customerListing') }}">Seller</a>
                         <i class="fa fa-circle"></i>
                     </li>
                     <li>
@@ -41,7 +41,7 @@
             <!-- END PAGE BAR -->
             <!-- BEGIN PAGE TITLE-->
             <h3 class="page-title"> Super Admin
-                <small>Seller Listing</small>
+                <small>Customer Listing</small>
             </h3>
             <!-- END PAGE TITLE-->
             <!-- END PAGE HEADER-->
@@ -50,8 +50,8 @@
                     <div class="portlet light portlet-fit portlet-datatable bordered">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="fa fa-users font-red-flamingo"></i>
-                                <span class="caption-subject font-red-flamingo sbold uppercase">Seller Datatable</span>
+                                <i class="fa fa-user font-blue"></i>
+                                <span class="caption-subject font-blue sbold uppercase">Customer Datatable</span>
                             </div>
 
                         </div>
@@ -59,20 +59,20 @@
                             <div class="table-container">
                                 <div class="dataTables_wrapper">
 
-                                        <table class="table table-striped table-bordered table-hover table-checkable order-column dataTable no-footer" id="sellerListingTable">
+                                        <table class="table table-striped table-bordered table-hover table-checkable order-column dataTable no-footer" id="customerListingTable">
                                             <thead>
                                             <tr role="row" class="heading">
                                                 <th width="2%">
                                                     Id
                                                 </th>
                                                 <th width="10%">
-                                                    Seller Name
+                                                    Customer Name
                                                 </th>
                                                 <th width="10%">
-                                                    Shop Name
+                                                    E-mail Id
                                                 </th>
                                                 <th width="10%">
-                                                    E-mail
+                                                    Mobile No
                                                 </th>
                                                 <th width="5%">
                                                     Action
@@ -82,11 +82,11 @@
                                                 <td>
                                                     <input type="text" class="form-control form-filter input-sm" name="id" readonly> </td>
                                                 <td>
-                                                    <input type="text" class="form-control form-filter input-sm" name="seller_name"> </td>
-                                                <td>
-                                                    <input type="text" class="form-control form-filter input-sm" name="shop_name"> </td>
+                                                    <input type="text" class="form-control form-filter input-sm" name="customer_name"> </td>
                                                 <td>
                                                     <input type="text" class="form-control form-filter input-sm" name="email"> </td>
+                                                <td>
+                                                    <input type="text" class="form-control form-filter input-sm" name="mobile_no"> </td>
                                                 <td>
                                                     <div class="margin-bottom-5">
                                                         <button class="btn btn-sm green btn-outline filter-submit margin-bottom">
@@ -119,12 +119,12 @@
     <script src="../assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
-    <script src="../assets/custom/superadmin/seller/manage-datatable.js" type="text/javascript"></script>
+    <script src="../assets/custom/superadmin/customer/manage-datatable.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL SCRIPTS -->
 
     <script>
         $(document).ready(function() {
-            $('#sellerlistingTable').DataTable();
+            $('#customerlistingTable').DataTable();
         });
 
         /*function changeStatus(element){

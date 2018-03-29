@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\SuperAdmin;
 
-use App\Offer;
+use App\Customer;
+use App\Http\Controllers\Controller;
+use App\Seller;
 use App\SellerAddress;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Log;
 
-class SellerController extends Controller
+class CustomerController extends Controller
 {
     public function __construct()
     {
@@ -17,7 +17,7 @@ class SellerController extends Controller
 
     public function getManageView(Request $request){
         try{
-            return view('superadmin.seller.manage');
+            return view('superadmin.customer.manage');
         }catch (\Exception $e){
             $data = [
                 'action' => 'Get seller manage view',
@@ -28,18 +28,18 @@ class SellerController extends Controller
         }
     }
 
-    public function getSellerListing(Request $request){
+    public function getCustomerListing(Request $request){
         try{
 
-            $sellerData = SellerAddress::get();
-            $iTotalRecords = count($sellerData);
+            $customerData = Customer::get();
+            $iTotalRecords = count($customerData);
             $records = array();
             $records['data'] = array();
-            $end = $request->length < 0 ? count($sellerData) : $request->length;
-            for($iterator = 0,$pagination = $request->start; $iterator < $end && $pagination < count($sellerData); $iterator++,$pagination++ ){
+            $end = $request->length < 0 ? count($customerData) : $request->length;
+            for($iterator = 0,$pagination = $request->start; $iterator < $end && $pagination < count($customerData); $iterator++,$pagination++ ){
 
                 $actionDropDown =  '<button class="edit btn btn-sm btn-success"> 
-                                            <form action="/offer/change-status/approved/'.$sellerData[$pagination]->id.'" method="post">
+                                            <form action="/offer/change-status/approved/'.$customerData[$pagination]->id.'" method="post">
                                                 <a href="javascript:void(0);" onclick="changeStatus(this)" style="color: white">
                                                   <i class="fa fa-edit"></i>   Edit 
                                                 </a>
@@ -48,10 +48,10 @@ class SellerController extends Controller
                                         </button>';
 
                 $records['data'][$iterator] = [
-                    $sellerData[$pagination]->seller_id,
-                    $sellerData[$pagination]->seller->user->first_name.' '.$sellerData[$pagination]->seller->user->last_name,
-                    ucwords($sellerData[$pagination]->shop_name),
-                    $sellerData[$pagination]->seller->user->email,
+                    $customerData[$pagination]->id,
+                    $customerData[$pagination]->user->first_name.' '.$customerData[$pagination]->user->last_name,
+                    $customerData[$pagination]->user->email,
+                    '+91-'.$customerData[$pagination]->user->mobile_no,
                     $actionDropDown
                 ];
             }
