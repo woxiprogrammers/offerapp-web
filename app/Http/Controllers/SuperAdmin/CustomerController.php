@@ -6,7 +6,10 @@ use App\Customer;
 use App\Http\Controllers\Controller;
 use App\Seller;
 use App\SellerAddress;
+use App\User;
+use function foo\func;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class CustomerController extends Controller
 {
@@ -39,9 +42,9 @@ class CustomerController extends Controller
             for($iterator = 0,$pagination = $request->start; $iterator < $end && $pagination < count($customerData); $iterator++,$pagination++ ){
 
                 $actionDropDown =  '<button class="edit btn btn-sm btn-success"> 
-                                            <form action="/offer/change-status/approved/'.$customerData[$pagination]->id.'" method="post">
-                                                <a href="javascript:void(0);" onclick="changeStatus(this)" style="color: white">
-                                                  <i class="fa fa-edit"></i>   Edit 
+                                            <form action="/customer/edit/'.$customerData[$pagination]->id.'" method="post">
+                                                <a href="/customer/edit/'.$customerData[$pagination]->id.'"  onclick="changeStatus(this)"  style="color: white">
+                                                  <i class="fa fa-edit"></i>   Edit Detail 
                                                 </a>
                                                 <input type="hidden" name="_token">
                                             </form> 
@@ -64,6 +67,42 @@ class CustomerController extends Controller
         }catch (\Exception $e){
             $data = [
                 'action' => 'Offer Create',
+                'exception' => $e->getMessage(),
+                'params' => $request->all()
+            ];
+            Log::critical(json_encode($data));
+            abort(500);
+        }
+    }
+
+    public function getCustomerEdit(Request $request, $customer_id){
+        try{
+            $user = Customer::where('id', $customer_id)->first()->user;
+
+            return view('superadmin.customer.edit',compact('user', 'customer_id'));
+        }catch(\Exception $e){
+            $data = [
+                'action' => 'get edit customer view',
+                'exception' => $e->getMessage(),
+                'params' => $request->all()
+            ];
+            Log::critical(json_encode($data));
+            abort(500);
+        }
+    }
+
+    public function setCustomerEdit(Request $request, $customer_id){
+        try{
+            $user = Customer::where('id', $customer_id)->first()->user;
+            $user->first_name = $request['first_name'];
+            $user->last_name = $request['last_name'];
+            $user->mobile_no = $request['mobile_no'];
+            $user->email = $request['email'];
+            $user->save();
+            return redirect(route('customerListing'));
+        }catch(\Exception $e){
+            $data = [
+                'action' => 'sett customer edit',
                 'exception' => $e->getMessage(),
                 'params' => $request->all()
             ];

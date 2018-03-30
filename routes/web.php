@@ -51,6 +51,10 @@ Route::group(['prefix' => 'seller'], function(){
 Route::group(['prefix' => 'customer'], function(){
     Route::get('manage','SuperAdmin\CustomerController@getManageView')->name('customerListing');
     Route::post('listing','SuperAdmin\CustomerController@getCustomerListing');
+    Route::get('edit/{customer_id}','SuperAdmin\CustomerController@getCustomerEdit');
+    Route::post('edit/{customer_id}','SuperAdmin\CustomerController@setCustomerEdit')->name('setCustomerEdit');
+
+
 
 });
 

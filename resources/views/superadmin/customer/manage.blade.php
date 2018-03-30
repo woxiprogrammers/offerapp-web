@@ -7,12 +7,11 @@
  */
 ?>
 @extends('layouts.offerApp')
-@section('title','OfferApp | Manage Seller')
+@section('title','OfferApp | Manage Customer')
 @section('css')
     <!-- BEGIN PAGE LEVEL PLUGINS -->
     <link href="../assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
     <link href="../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
-    <link href="../assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL PLUGINS -->
 @endsection
 @section('content')
@@ -29,7 +28,7 @@
                         <i class="fa fa-circle"></i>
                     </li>
                     <li>
-                        <a href="{{ route('customerListing') }}">Seller</a>
+                        <a href="{{ route('customerListing') }}">Customer</a>
                         <i class="fa fa-circle"></i>
                     </li>
                     <li>
@@ -110,6 +109,7 @@
         </div>
         <!-- END CONTENT BODY -->
     </div>
+
 @endsection
 @section('javascript')
     <!-- BEGIN PAGE LEVEL PLUGINS -->
