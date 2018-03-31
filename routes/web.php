@@ -45,6 +45,9 @@ Route::group(['prefix' => 'offer'], function(){
 Route::group(['prefix' => 'seller'], function(){
     Route::get('manage','SuperAdmin\SellerController@getManageView')->name('sellerListing');
     Route::post('listing','SuperAdmin\SellerController@getSellerListing');
+    Route::get('edit/{seller_id}','SuperAdmin\SellerController@getSellerEdit');
+    Route::post('edit/{seller_id}','SuperAdmin\SellerController@setSellerEdit')->name('setSellerEdit');
+
 
 });
 
