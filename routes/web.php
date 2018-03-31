@@ -37,6 +37,7 @@ Route::group(['prefix' => 'offer'], function(){
 
     Route::get('create','Offer\OfferController@getCreateView');
     Route::post('create','Offer\OfferController@createOffer');
+    Route::get('change-status/{status_slug}/{offer_id}','Offer\OfferController@changeOfferStatus');
     Route::post('image-upload',array('uses'=>'Offer\OfferController@uploadTempOfferImages'));
     Route::post('display-images',array('uses'=>'Offer\OfferController@displayOfferImages'));
     Route::post('delete-temp-product-image',array('uses'=>'Offer\OfferController@removeTempImage'));
@@ -56,8 +57,6 @@ Route::group(['prefix' => 'customer'], function(){
     Route::post('listing','SuperAdmin\CustomerController@getCustomerListing');
     Route::get('edit/{customer_id}','SuperAdmin\CustomerController@getCustomerEdit');
     Route::post('edit/{customer_id}','SuperAdmin\CustomerController@setCustomerEdit')->name('setCustomerEdit');
-
-
 
 });
 
