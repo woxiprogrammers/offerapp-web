@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Offer;
 
 use App\Http\Controllers\CustomTraits\OfferTrait;
 use App\Offer;
+use App\OfferStatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
@@ -41,7 +42,7 @@ use OfferTrait;
                     $actionDropDown =  '<div class="margin-bottom-5">
                                         <button class="btn btn-sm blue"> 
                                             <form action="/offer/change-status/approved/'.$offerData[$pagination]->id.'" method="post">
-                                                <a href="javascript:void(0);" onclick="changeStatus(this)" style="color: white">
+                                                <a href="/offer/change-status/approved/'.$offerData[$pagination]->id.'" onclick="changeStatus(this)" style="color: white">
                                                    <i class="fa fa-check-square-o"></i>  Approve 
                                                 </a>
                                                 <input type="hidden" name="_token">
@@ -51,7 +52,7 @@ use OfferTrait;
                                         <div>
                                         <button class="btn btn-sm default "> 
                                             <form action="/offer/change-status/disapproved/'.$offerData[$pagination]->id.'" method="post">
-                                                <a href="javascript:void(0);" onclick="changeStatus(this)" style="color: grey">
+                                                <a href="/offer/change-status/disapproved/'.$offerData[$pagination]->id.'" onclick="changeStatus(this)" style="color: grey">
                                                    <i class="fa fa-times"></i> Disapprove 
                                                 </a>
                                                 <input type="hidden" name="_token">
@@ -83,5 +84,27 @@ use OfferTrait;
             $response = array();
         }
         return response()->json($records,$status);
+    }
+
+    public function changeOfferStatus(Request $request, $status_slug, $offer_id){
+        try{
+            $offer = Offer::where('id', $offer_id)->first();
+            $offer->offer_status_id = OfferStatus::where('slug', $status_slug)->pluck('id')->first();
+            $offer->save();
+            return redirect(route('offerListing'));
+        }catch (\Exception $e){
+            $data = [
+                'action' => 'Get offer manage view',
+                'exception' => $e->getMessage(),
+                'params' => [
+                    'status_slug' => $status_slug,
+                    'offer_id' => $offer_id,
+                    'request' => $request
+            ]
+            ];
+            Log::critical(json_encode($data));
+            abort(500);
+        }
+
     }
 }
