@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Role;
+use App\Seller;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -108,7 +109,7 @@ class RegisterController extends Controller
         try{
             $sellerRoleId = Role::where('slug','seller')->pluck('id')->first();
 
-            return User::create([
+            $user =  User::create([
                 'role_id' => $sellerRoleId,
                 'first_name' => $data['first_name'],
                 'last_name' => $data['last_name'],
@@ -116,6 +117,10 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'password' => bcrypt($data['password']),
             ]);
+            $seller = Seller::create([
+                'user_id' => $user->id,
+            ]);
+            return $user;
         }catch(\Exception $e){
             $input = [
                 'action' => 'create user',
