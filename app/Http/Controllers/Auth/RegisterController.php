@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Role;
+use App\Seller;
 use App\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -28,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -46,13 +50,52 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+
+    public function register(Request $request)
+    {
+        try{
+            //Validates data
+            $this->validator($request->all())->validate();
+
+            //Create user
+            $user = $this->createUser($request->all());
+
+            //Authenticates user
+            $credentials = $request->except('mobile_no', 'password');
+            Auth::attempt($credentials);
+
+            //Redirects user
+            return redirect($this->redirectTo);
+        }catch (\Exception $e){
+            $data = [
+                'action' => 'register user',
+                'exception' => $e->getMessage(),
+                'params' => $request->all()
+            ];
+            Log::critical(json_encode($data));
+        }
+
+    }
+
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+        try{
+            return Validator::make($data, [
+                'first_name' => 'required|string|max:255',
+                'last_name' => 'required|string|max:255',
+                'email' => 'string|email|max:255',
+                'password' => 'required|string|min:6',
+                'mobile_no' => 'required',
+            ]);
+        }catch(\Exception $e){
+            $input = [
+                'action' => 'validate user',
+                'exception' => $e->getMessage(),
+                'params' => $data->all()
+            ];
+            Log::critical(json_encode($input));
+        }
+
     }
 
     /**
@@ -61,12 +104,33 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function createUser(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        try{
+            $sellerRoleId = Role::where('slug','seller')->pluck('id')->first();
+
+            $user =  User::create([
+                'role_id' => $sellerRoleId,
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'mobile_no' => $data['mobile_no'],
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+            ]);
+            $seller = Seller::create([
+                'user_id' => $user->id,
+            ]);
+            return $user;
+        }catch(\Exception $e){
+            $input = [
+                'action' => 'create user',
+                'exception' => $e->getMessage(),
+                'params' => $data->all()
+            ];
+            Log::critical(json_encode($input));
+        }
+
     }
+
+
 }
