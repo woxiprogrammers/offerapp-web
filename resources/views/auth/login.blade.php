@@ -27,7 +27,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <meta content="" name="description" />
         <meta content="" name="author" />
         <meta name="google-signin-client_id" content="300160235823-gm1609nvgbguh2jfj5g10h6f3njit32a.apps.googleusercontent.com300160235823-gm1609nvgbguh2jfj5g10h6f3njit32a.apps.googleusercontent.com">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="csrfToken" content="{{ csrf_token() }}">
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -72,17 +72,23 @@ License: You must have a valid license purchased only from themeforest(the above
             <form class="login-form" action="{{route('login')}}" method="post">
                 {{ csrf_field() }}
 
+                @if(isset($error))
+                    <div class="alert alert-danger alert-block">
+                        <button type="button" class="close" data-dismiss="alert">x</button>
+                        <strong>{{ $error }}</strong>
+                    </div>
+                @endif
                 <h3 class="form-title">Login to your account</h3>
                 <div class="alert alert-danger display-hide">
                     <button class="close" data-close="alert"></button>
-                    <span> Enter any mobile no. and password. </span>
+                    <span> Please enter the Credentials. </span>
                 </div>
                 <div class="form-group{{ $errors->has('mobile_no') ? ' has-error' : '' }}">
                     <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
                     <label class="control-label visible-ie8 visible-ie9">Mobile No.</label>
                     <div class="input-icon">
                       <i class="fa fa-user"></i>
-                        <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Mobile" name="mobile_no" /> </div>
+                        <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="Mobile Number" name="mobile_no" required/> </div>
                         @if ($errors->has('mobile_no'))
                           <span class="help-block alert-danger">
                             <strong>{{ $errors->first('mobile_no') }}</strong>
@@ -107,23 +113,6 @@ License: You must have a valid license purchased only from themeforest(the above
                         <span></span>
                     </label>
                     <button type="submit" class="btn green pull-right"> Login </button>
-                </div>
-                <div class="login-options">
-                    <h4>Or login with</h4>
-                    <ul class="social-icons">
-                        <li>
-                            <a class="facebook" data-original-title="facebook" href="javascript:;"> </a>
-                        </li>
-                        <li>
-                            <a class="twitter" data-original-title="Twitter" href="javascript:;"> </a>
-                        </li>
-                        <li>
-                            <a class="googleplus" data-original-title="Goole Plus" href="javascript:;"> </a>
-                        </li>
-                        <li>
-                            <a class="linkedin" data-original-title="Linkedin" href="javascript:;"> </a>
-                        </li>
-                    </ul>
                 </div>
                 <div class="forget-password">
                     <h4>Forgot your password ?</h4>
@@ -156,7 +145,7 @@ License: You must have a valid license purchased only from themeforest(the above
         </div>
         <!-- END LOGIN -->
         <!-- BEGIN COPYRIGHT -->
-        <div class="copyright"> 2017 &copy; Woxi Software LLP - OFFERAPP </div>
+        <div class="copyright"> 2018 &copy; Woxi Software LLP - OFFERAPP </div>
         <!-- END COPYRIGHT -->
         <!--[if lt IE 9]>
 <script src="../assets/global/plugins/respond.min.js"></script>
