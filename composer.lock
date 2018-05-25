@@ -867,11 +867,7 @@
                 "datetime",
                 "time"
             ],
-<<<<<<< HEAD
             "time": "2018-03-19 15:50:49"
-=======
-            "time": "2018-03-19T15:50:49+00:00"
->>>>>>> develop
         },
         {
             "name": "nikic/php-parser",
