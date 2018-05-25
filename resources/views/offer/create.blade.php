@@ -98,9 +98,9 @@
                                         <div class="col-md-6">
                                             <div class="input-group input-large date-picker input-daterange" data-date-format="yyyy-mm-dd">
                                                 <span class="input-group-addon"> From </span>
-                                                <input type="text" class="form-control" name="valid_from" id="fromDate">
+                                                <input type="text" class="form-control" name="valid_from" id="fromDate" required>
                                                 <span class="input-group-addon"> To </span>
-                                                <input type="text" class="form-control" name="valid_to">
+                                                <input type="text" class="form-control" name="valid_to" required>
                                             </div>
                                         </div>
                                     </div>
