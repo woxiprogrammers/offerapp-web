@@ -54,9 +54,6 @@ class LoginController extends Controller
                 $user = Auth::user();
                 return redirect('/');
             }else{
-               /* $request->session()->flash('error','Invalid Credentials');
-                return redirect('/login');*/
-
                 $error = 'Invalid Credentials! Please Enter a Valid Mobile no. or Passsword';
                 return view('auth.login', compact('error'));
             }
