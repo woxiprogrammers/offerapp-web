@@ -16,11 +16,11 @@ class CreateGroupMessagesTable extends Migration
         Schema::create('group_messages', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('group_id');
-            $table->foreign('group_id')->references('id')->on('groups')->onUpdate('cascade')->onUpdate('cascade');
+            $table->foreign('group_id')->references('id')->on('groups')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedInteger('role_id');
-            $table->foreign('role_id')->references('id')->on('roles')->onUpdate('cascade')->onUpdate('cascade');
+            $table->foreign('role_id')->references('id')->on('roles')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedInteger('offer_id');
-            $table->foreign('offer_id')->references('id')->on('offers')->onUpdate('cascade')->onUpdate('cascade');
+            $table->foreign('offer_id')->references('id')->on('offers')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedInteger('reference_member_id');
             $table->timestamps();
         });

@@ -17,7 +17,7 @@ class CreateOfferImagesTable extends Migration
             $table->increments('id');
             $table->string('name',255);
             $table->unsignedInteger('offer_id');
-            $table->foreign('offer_id')->references('id')->on('offers')->onUpdate('cascade')->onUpdate('cascade');
+            $table->foreign('offer_id')->references('id')->on('offers')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

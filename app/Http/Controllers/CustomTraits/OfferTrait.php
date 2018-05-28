@@ -52,7 +52,7 @@ trait OfferTrait{
                 $offerDirectoryName = sha1($offer->id);
                 $userDirectoryName = sha1($user->id);
                 $tempImageUploadPath = public_path().env('OFFER_TEMP_IMAGE_UPLOAD').DIRECTORY_SEPARATOR.$userDirectoryName;
-                $imageUploadPath = public_path().env('OFFER_IMAGE_UPLOAD').DIRECTORY_SEPARATOR.$offerDirectoryName.DIRECTORY_SEPARATOR.'images';
+                $imageUploadPath = public_path().env('OFFER_IMAGE_UPLOAD').DIRECTORY_SEPARATOR.$offerDirectoryName;
                 $offerImageData = ['offer_id' => $offer->id];
                 foreach($request->offer_images as $image){
                     $imageName = basename($image['image_name']);
