@@ -123,7 +123,7 @@
                 </a>
             </li>
             <li class="nav-item  ">
-                <a href="javascript:;" class="nav-link nav-toggle">
+                <a href="" class="nav-link nav-toggle">
                     <i class="icon-feed"></i>
                     <span class="title">Groups</span>
                     <span class="arrow"></span>
@@ -136,7 +136,7 @@
                         </a>
                     </li>
                     <li class="nav-item  ">
-                        <a href="#View" class="nav-link ">
+                        <a href="/group/manage" class="nav-link ">
                             <i class="fa fa-eye"></i>
                             <span class="title">All Group</span>
                         </a>
