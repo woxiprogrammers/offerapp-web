@@ -16,12 +16,12 @@ class CreateSellerAddressesTable extends Migration
         Schema::create('seller_addresses', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('seller_id');
-            $table->foreign('seller_id')->references('id')->on('sellers')->onUpdate('cascade')->onUpdate('cascade');
+            $table->foreign('seller_id')->references('id')->on('sellers')->onUpdate('cascade')->onDelete('cascade');
             $table->string('shop_name',255)->nullable();
             $table->string('landline',20)->nullable();
             $table->longText('address')->nullable();
             $table->unsignedInteger('floor_id');
-            $table->foreign('floor_id')->references('id')->on('floors')->onUpdate('cascade')->onUpdate('cascade');
+            $table->foreign('floor_id')->references('id')->on('floors')->onUpdate('cascade')->onDelete('cascade');
             $table->string('zipcode',255)->nullable();
             $table->string('city',255)->nullable();
             $table->string('state',255)->nullable();

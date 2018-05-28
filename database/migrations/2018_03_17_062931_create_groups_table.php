@@ -18,7 +18,7 @@ class CreateGroupsTable extends Migration
             $table->string('name',255);
             $table->text('description');
             $table->unsignedInteger('seller_id');
-            $table->foreign('seller_id')->references('id')->on('sellers')->onUpdate('cascade')->onUpdate('cascade');
+            $table->foreign('seller_id')->references('id')->on('sellers')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

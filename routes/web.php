@@ -12,7 +12,6 @@
 */
 
 Route::group(['middleware' => ['auth']], function () {
-
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/logout', ['uses' => 'Auth\LoginController@logout'])->name('logout');
 });
@@ -31,10 +30,8 @@ Route::group(['prefix' => 'register'], function(){
 });
 
 Route::group(['prefix' => 'offer'], function(){
-
-    Route::post('listing',array('uses' => 'Offer\OfferController@getlisting'));
+    Route::post('listing',array('uses' => 'Offer\OfferController@getListing'));
     Route::get('manage','Offer\OfferController@getManageView')->name('offerListing');
-
     Route::get('create','Offer\OfferController@getCreateView');
     Route::post('create','Offer\OfferController@createOffer');
     Route::get('change-status/{status_slug}/{offer_id}','Offer\OfferController@changeOfferStatus');
@@ -48,8 +45,6 @@ Route::group(['prefix' => 'seller'], function(){
     Route::post('listing','SuperAdmin\SellerController@getSellerListing');
     Route::get('edit/{seller_id}','SuperAdmin\SellerController@getSellerEdit');
     Route::post('edit/{seller_id}','SuperAdmin\SellerController@setSellerEdit')->name('setSellerEdit');
-
-
 });
 
 Route::group(['prefix' => 'customer'], function(){
@@ -57,6 +52,5 @@ Route::group(['prefix' => 'customer'], function(){
     Route::post('listing','SuperAdmin\CustomerController@getCustomerListing');
     Route::get('edit/{customer_id}','SuperAdmin\CustomerController@getCustomerEdit');
     Route::post('edit/{customer_id}','SuperAdmin\CustomerController@setCustomerEdit')->name('setCustomerEdit');
-
 });
 
