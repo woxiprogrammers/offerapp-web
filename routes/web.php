@@ -29,6 +29,23 @@ Route::group(['prefix' => 'register'], function(){
     Route::post('verifiyotp', 'Auth\OtpVerification@verifyOtp')->name('verifiy-otp');
 });
 
+Route::group(['prefix' => 'group'], function(){
+    Route::get('manage','Group\GroupController@getManageView')->name('groupListing');
+    Route::post('create','Group\GroupController@createGroup')->name('createGroup');
+
+    Route::group(['prefix' => 'member'], function(){
+        Route::get('manage/{group_id}','Group\GroupController@getGroupDetail')->name('groupMemberListing');
+        Route::post('add/{group_id}','Group\GroupController@addMemberToGroup')->name('addGroupMember');
+        Route::get('remove/{group_id}/{user_id}','Group\GroupController@removeMemberFromGroup')->name('removeGroupMember');
+
+    });
+
+    Route::group(['prefix' => 'offer'], function(){
+        Route::get('manage/{group_id}','Group\GroupController@groupOfferListing')->name('groupOfferListing');
+        Route::get('remove/{group_id}/{offer_id}','Group\GroupController@removeOfferFromGroup')->name('removeGroupOffer');
+    });
+});
+
 Route::group(['prefix' => 'offer'], function(){
     Route::post('listing',array('uses' => 'Offer\OfferController@getListing'));
     Route::get('manage','Offer\OfferController@getManageView')->name('offerListing');
