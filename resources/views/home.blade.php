@@ -1,3 +1,5 @@
+<?php
+?>
 @extends('layouts.offerApp')
 
 @section('content')
@@ -135,4 +137,8 @@
     </div>
     <!-- END CONTENT BODY -->
 </div>
+@endsection
+
+@section('javascript')
+
 @endsection
