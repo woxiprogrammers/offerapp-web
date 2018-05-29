@@ -7,6 +7,7 @@ use App\Offer;
 use App\OfferStatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class OfferController extends Controller
@@ -32,13 +33,14 @@ use OfferTrait;
 
     public function getlisting(Request $request){
         try{
+            $user = Auth::user();
             $offerData = Offer::get();
             $iTotalRecords = count($offerData);
             $records = array();
             $records['data'] = array();
             $end = $request->length < 0 ? count($offerData) : $request->length;
             for($iterator = 0,$pagination = $request->start; $iterator < $end && $pagination < count($offerData); $iterator++,$pagination++ ){
-
+                if($user->role->slug == 'super-admin'){
                     $actionDropDown =  '<div class="margin-bottom-5">
                                         <button class="btn btn-sm blue"> 
                                             <form action="/offer/change-status/approved/'.$offerData[$pagination]->id.'" method="post">
@@ -59,6 +61,16 @@ use OfferTrait;
                                             </form>
                                         </button>
                                         </div>';
+                }else{
+                    $actionDropDown =  '<div >
+                                            <form action="/offer/edit/'.$offerData[$pagination]->id.'" method="update">
+                                                <a href="/offer/edit/'.$offerData[$pagination]->id.'" onclick="changeStatus(this)" class="btn btn-outline red btn-sm" >
+                                                   <i class="fa fa-edit"></i>  Edit 
+                                                </a>
+                                                <input type="hidden" name="_token">
+                                            </form> 
+                                        </div>';
+                }
 
                 $records['data'][$iterator] = [
                     $offerData[$pagination]->id,

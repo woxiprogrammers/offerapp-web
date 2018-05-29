@@ -116,35 +116,21 @@
                 </ul>
             </li>
             <li class="nav-item  ">
-                <a href="javascript:;" class="nav-link nav-toggle">
+                <a href="/group/promote/offer" class="nav-link nav-toggle">
                     <i class="icon-paper-plane"></i>
                     <span class="title">Promote Offer</span>
                     <span class=""></span>
                 </a>
             </li>
             <li class="nav-item  ">
-                <a href="" class="nav-link nav-toggle">
+                <a href="/group/manage" class="nav-link nav-toggle">
                     <i class="icon-feed"></i>
                     <span class="title">Groups</span>
-                    <span class="arrow"></span>
                 </a>
-                <ul class="sub-menu">
-                    <li class="nav-item  ">
-                        <a href="#create" class="nav-link ">
-                            <i class="fa fa-user-plus"></i>
-                            <span class="title">Add Group</span>
-                        </a>
-                    </li>
-                    <li class="nav-item  ">
-                        <a href="/group/manage" class="nav-link ">
-                            <i class="fa fa-eye"></i>
-                            <span class="title">All Group</span>
-                        </a>
-                    </li>
-                    @endif
-                </ul>
+
             </li>
         </ul>
+        @endif
         <!-- END SIDEBAR MENU -->
         <!-- END SIDEBAR MENU -->
     </div>

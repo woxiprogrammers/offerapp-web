@@ -38,12 +38,16 @@ Route::group(['prefix' => 'group'], function(){
         Route::get('manage/{group_id}','Group\GroupController@getGroupDetail')->name('groupMemberListing');
         Route::post('add/{group_id}','Group\GroupController@addMemberToGroup')->name('addGroupMember');
         Route::get('remove/{group_id}/{user_id}','Group\GroupController@removeMemberFromGroup')->name('removeGroupMember');
-
     });
 
     Route::group(['prefix' => 'offer'], function(){
         Route::get('manage/{group_id}','Group\GroupController@groupOfferListing')->name('groupOfferListing');
         Route::get('remove/{group_id}/{offer_id}','Group\GroupController@removeOfferFromGroup')->name('removeGroupOffer');
+    });
+
+    Route::group(['prefix' => 'promote'], function(){
+        Route::get('offer','Group\GroupController@getPromoteView');
+        Route::post('offer','Group\GroupController@promoteOffer')->name('promoteOffer');
     });
 });
 
