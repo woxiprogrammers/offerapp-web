@@ -221,7 +221,6 @@ class GroupController extends Controller
                 'params' => $request->all()
 
             ];
-            dd($data);
             Log::critical(json_encode($data));
         }
     }

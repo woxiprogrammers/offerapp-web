@@ -16,9 +16,9 @@ class CreateSellerHasPaymentModesTable extends Migration
         Schema::create('seller_payment_modes', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('seller_id');
-            $table->foreign('seller_id')->references('id')->on('sellers')->onUpdate('cascade')->onUpdate('cascade');
+            $table->foreign('seller_id')->references('id')->on('sellers')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedInteger('payment_mode_id');
-            $table->foreign('payment_mode_id')->references('id')->on('payment_modes')->onUpdate('cascade')->onUpdate('cascade');
+            $table->foreign('payment_mode_id')->references('id')->on('payment_modes')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

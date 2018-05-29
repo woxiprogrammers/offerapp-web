@@ -16,14 +16,14 @@ class CreateCustomerOfferDetailsTable extends Migration
         Schema::create('customer_offer_details', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('customer_id');
-            $table->foreign('customer_id')->references('id')->on('customers')->onUpdate('cascade')->onUpdate('cascade');
+            $table->foreign('customer_id')->references('id')->on('customers')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedInteger('offer_id');
-            $table->foreign('offer_id')->references('id')->on('offers')->onUpdate('cascade')->onUpdate('cascade');
+            $table->foreign('offer_id')->references('id')->on('offers')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedInteger('offer_status_id');
-            $table->foreign('offer_status_id')->references('id')->on('offer_statuses')->onUpdate('cascade')->onUpdate('cascade');
+            $table->foreign('offer_status_id')->references('id')->on('offer_statuses')->onUpdate('cascade')->onDelete('cascade');
             $table->boolean('is_wishlist')->nullable();
             $table->unsignedInteger('reach_time_id')->nullable();
-            $table->foreign('reach_time_id')->references('id')->on('reach_times')->onUpdate('cascade')->onUpdate('cascade');
+            $table->foreign('reach_time_id')->references('id')->on('reach_times')->onUpdate('cascade')->onDelete('cascade');
             $table->string('offer_code',255)->nullable();
             $table->double('reward_points')->nullable();
             $table->timestamps();

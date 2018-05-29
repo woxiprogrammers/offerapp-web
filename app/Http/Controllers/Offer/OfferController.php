@@ -31,7 +31,7 @@ use OfferTrait;
         }
     }
 
-    public function getlisting(Request $request){
+    public function getListing(Request $request){
         try{
             $user = Auth::user();
             $offerData = Offer::get();
@@ -39,54 +39,36 @@ use OfferTrait;
             $records = array();
             $records['data'] = array();
             $end = $request->length < 0 ? count($offerData) : $request->length;
-            for($iterator = 0,$pagination = $request->start; $iterator < $end && $pagination < count($offerData); $iterator++,$pagination++ ){
-                if($user->role->slug == 'super-admin'){
-                    $actionDropDown =  '<div class="margin-bottom-5">
-                                        <button class="btn btn-sm blue"> 
-                                            <form action="/offer/change-status/approved/'.$offerData[$pagination]->id.'" method="post">
-                                                <a href="/offer/change-status/approved/'.$offerData[$pagination]->id.'" onclick="changeStatus(this)" style="color: white">
+            for($iterator = 0,$pagination = $request->start; $iterator < $end && $pagination < count($offerData); $iterator++,$pagination++ ) {
+                if ($user->role->slug == 'super-admin') {
+                    $actionDropDown = '<a href="/offer/change-status/approved/' . $offerData[$pagination]->id . '" class="btn btn-outline blue btn-sm" onclick="changeStatus(this)" >
                                                    <i class="fa fa-check-square-o"></i>  Approve 
                                                 </a>
-                                                <input type="hidden" name="_token">
-                                            </form> 
-                                        </button>
-                                        </div>
-                                        <div>
-                                        <button class="btn btn-sm default "> 
-                                            <form action="/offer/change-status/disapproved/'.$offerData[$pagination]->id.'" method="post">
-                                                <a href="/offer/change-status/disapproved/'.$offerData[$pagination]->id.'" onclick="changeStatus(this)" style="color: grey">
+                                                <a href="/offer/change-status/disapproved/' . $offerData[$pagination]->id . '" onclick="changeStatus(this)" class="btn btn-outline dark btn-sm"  >
                                                    <i class="fa fa-times"></i> Disapprove 
-                                                </a>
-                                                <input type="hidden" name="_token">
-                                            </form>
-                                        </button>
-                                        </div>';
-                }else{
-                    $actionDropDown =  '<div >
-                                            <form action="/offer/edit/'.$offerData[$pagination]->id.'" method="update">
-                                                <a href="/offer/edit/'.$offerData[$pagination]->id.'" onclick="changeStatus(this)" class="btn btn-outline red btn-sm" >
-                                                   <i class="fa fa-edit"></i>  Edit 
-                                                </a>
-                                                <input type="hidden" name="_token">
-                                            </form> 
-                                        </div>';
-                }
+                                                </a>';
 
-                $records['data'][$iterator] = [
-                    $offerData[$pagination]->id,
-                    $offerData[$pagination]->offerType->name,
-                    date('d F Y',strtotime($offerData[$pagination]->valid_from)),
-                    date('d F Y',strtotime($offerData[$pagination]->valid_to)),
-                    ucwords($offerData[$pagination]->sellerAddress->shop_name),
-                    $offerData[$pagination]->offerStatus->name,
-                    $actionDropDown
-                ];
+                } else {
+                    $actionDropDown = '<a href="/offer/edit/' . $offerData[$pagination]->id . '" onclick="changeStatus(this)" class="btn btn-outline red btn-sm" >
+                                                   <i class="fa fa-edit"></i>  Edit 
+                                                </a>';
+
+                }
+                    $records['data'][$iterator] = [
+                        $offerData[$pagination]->offerType->name,
+                        date('d F Y', strtotime($offerData[$pagination]->valid_from)),
+                        date('d F Y', strtotime($offerData[$pagination]->valid_to)),
+                        ucwords($offerData[$pagination]->sellerAddress->shop_name),
+                        $offerData[$pagination]->offerStatus->name,
+                        $actionDropDown
+                    ];
+                }
+                $records["draw"] = intval($request->draw);
+                $records["recordsTotal"] = $iTotalRecords;
+                $records["recordsFiltered"] = $iTotalRecords;
+                $status = 200;
             }
-            $records["draw"] = intval($request->draw);
-            $records["recordsTotal"] = $iTotalRecords;
-            $records["recordsFiltered"] = $iTotalRecords;
-            $status = 200;
-        }catch(\Exception $e){
+        catch(\Exception $e){
             $data = [
                 'action' => 'Get offer manage view',
                 'exception' => $e->getMessage()
@@ -106,17 +88,15 @@ use OfferTrait;
             return redirect(route('offerListing'));
         }catch (\Exception $e){
             $data = [
-                'action' => 'Get offer manage view',
+                'action' => 'Change Offer Status',
                 'exception' => $e->getMessage(),
                 'params' => [
                     'status_slug' => $status_slug,
                     'offer_id' => $offer_id,
-                    'request' => $request
             ]
             ];
             Log::critical(json_encode($data));
             abort(500);
         }
-
     }
 }

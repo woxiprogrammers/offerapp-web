@@ -16,9 +16,9 @@ class CreateGroupHasCustomersTable extends Migration
         Schema::create('group_customers', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('group_id');
-            $table->foreign('group_id')->references('id')->on('groups')->onUpdate('cascade')->onUpdate('cascade');
+            $table->foreign('group_id')->references('id')->on('groups')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedInteger('customer_id');
-            $table->foreign('customer_id')->references('id')->on('customers')->onUpdate('cascade')->onUpdate('cascade');
+            $table->foreign('customer_id')->references('id')->on('customers')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
