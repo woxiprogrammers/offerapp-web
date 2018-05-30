@@ -14,6 +14,7 @@ use App\GroupCustomer;
 use App\GroupMessage;
 use App\Offer;
 use App\Seller;
+use App\SellerAddress;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -132,7 +133,6 @@ class GroupController extends Controller
             $customer_id = Customer::where('user_id',$user_id)->pluck('id')->first();
             $check_customer_group_count = GroupCustomer::where('customer_id', $customer_id)->where('group_id',$group_id)->pluck('id');
             if(count($check_customer_group_count) > 0) {
-
                 Session::flash('error','Please enter a valid mobile no');
                 return redirect()->back()->with('error', 'Please enter a valid mobile no');
 
@@ -206,22 +206,42 @@ class GroupController extends Controller
 
     }
 
+    public function getPromoteView(Request $request){
+        try{
+            $user = Auth::user();
+            $seller = Seller::where('user_id', $user->id)->first();
+            $sellerAddressIds = SellerAddress::where('seller_id', $seller->id)->pluck('id');
+            $groups = Group::where('seller_id',$seller->id)->get();
+            $offers = Offer::whereIn('seller_address_id', $sellerAddressIds)->get();
+            return view('group.promote', compact('groups', 'offers'));
+        }catch (\Exception $e) {
+            $data = [
+                'action' => 'Promote Offer View',
+                'exception' => $e->getMessage(),
+                'params' => $request->all()
+
+            ];
+            Log::critical(json_encode($data));
+        }
+    }
+
     public function promoteOffer(Request $request){
         try{
             $user = Auth::user();
             $offer_id = $request['offer_id'];
-
+            $group_ids = $request['group_id'];
             $role_id = User::where('id',$user->id)->pluck('role_id')->first();
-            foreach($request['group_id'] as $key => $groupId){
+            foreach($group_ids as $key => $group_id){
                 GroupMessage::create([
-                    'group_id' => $groupId,
+                    'group_id' => $group_id,
                     'role_id' => $role_id,
                     'offer_id' => $offer_id,
                     'reference_member_id' => $user->id
                 ]);
             }
-
             $message = 'Offer Promoted Successfully';
+            Session::flash('success',$message);
+            return redirect()->back()->with('success', $message);
 
         }catch (\Exception $e) {
             $data = [
@@ -232,10 +252,7 @@ class GroupController extends Controller
             ];
             Log::critical(json_encode($data));
         }
-        $response = [
-            'message' => $message,
-        ];
-        return response()->json($response, $status);
+
     }
 
 }

@@ -7,6 +7,7 @@ use App\Offer;
 use App\OfferStatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class OfferController extends Controller
@@ -32,46 +33,43 @@ use OfferTrait;
 
     public function getListing(Request $request){
         try{
+            $user = Auth::user();
             $offerData = Offer::get();
             $iTotalRecords = count($offerData);
             $records = array();
             $records['data'] = array();
             $end = $request->length < 0 ? count($offerData) : $request->length;
-            for($iterator = 0,$pagination = $request->start; $iterator < $end && $pagination < count($offerData); $iterator++,$pagination++ ){
-                if($offerData[$pagination]->offerStatus->slug == 'pending'){
-                    $actionDropDown = '<button class="btn btn-xs blue"> 
-                                        <a href="/offer/change-status/approved/'.$offerData[$pagination]->id.'" style="color: white">
-                                             Approve 
-                                        </a>
-                                    </button>
-                                    <button class="btn btn-xs default "> 
-                                        <a href="/offer/change-status/disapproved/'.$offerData[$pagination]->id.'" style="color: grey">
-                                            Disapprove 
-                                        </a>
-                                    </button>
-                                    <button class="btn btn-xs default "> 
-                                        <a href="/offer/change-status/disapproved/'.$offerData[$pagination]->id.'" style="color: grey">
-                                            View 
-                                        </a>
-                                    </button>';
-                }else{
-                    $actionDropDown = '';
+            for($iterator = 0,$pagination = $request->start; $iterator < $end && $pagination < count($offerData); $iterator++,$pagination++ ) {
+                if ($user->role->slug == 'super-admin' && $offerData[$pagination]->offerStatus->slug == 'pending') {
+                    $actionDropDown = '<a href="/offer/change-status/approved/' . $offerData[$pagination]->id . '" class="btn btn-outline blue btn-sm" onclick="changeStatus(this)" >
+                                                   <i class="fa fa-check-square-o"></i>  Approve 
+                                                </a>
+                                                <a href="/offer/change-status/disapproved/' . $offerData[$pagination]->id . '" onclick="changeStatus(this)" class="btn btn-outline dark btn-sm"  >
+                                                   <i class="fa fa-times"></i> Disapprove 
+                                                </a>
+                                                <a href="#offer_view" class="btn btn-outline red-flamingo btn-sm" onclick="changeStatus(this)" >
+                                                   <i class="fa fa-check-square-o"></i>  View 
+                                                </a>';
+                } else {
+                    $actionDropDown = '<a href="/offer/edit/' . $offerData[$pagination]->id . '" onclick="changeStatus(this)" class="btn btn-outline red btn-sm" >
+                                                   <i class="fa fa-edit"></i>  Edit 
+                                                </a>';
                 }
-
-                $records['data'][$iterator] = [
-                    $offerData[$pagination]->offerType->name,
-                    date('d F Y',strtotime($offerData[$pagination]->valid_from)),
-                    date('d F Y',strtotime($offerData[$pagination]->valid_to)),
-                    ucwords($offerData[$pagination]->sellerAddress->shop_name),
-                    $offerData[$pagination]->offerStatus->name,
-                    $actionDropDown
-                ];
+                    $records['data'][$iterator] = [
+                        $offerData[$pagination]->offerType->name,
+                        date('d F Y', strtotime($offerData[$pagination]->valid_from)),
+                        date('d F Y', strtotime($offerData[$pagination]->valid_to)),
+                        ucwords($offerData[$pagination]->sellerAddress->shop_name),
+                        $offerData[$pagination]->offerStatus->name,
+                        $actionDropDown
+                    ];
+                }
+                $records["draw"] = intval($request->draw);
+                $records["recordsTotal"] = $iTotalRecords;
+                $records["recordsFiltered"] = $iTotalRecords;
+                $status = 200;
             }
-            $records["draw"] = intval($request->draw);
-            $records["recordsTotal"] = $iTotalRecords;
-            $records["recordsFiltered"] = $iTotalRecords;
-            $status = 200;
-        }catch(\Exception $e){
+        catch(\Exception $e){
             $data = [
                 'action' => 'Get offer manage view',
                 'exception' => $e->getMessage()
