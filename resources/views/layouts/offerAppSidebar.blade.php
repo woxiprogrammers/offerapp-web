@@ -96,7 +96,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li class="nav-item  ">
-                        <a href="#listView" class="nav-link ">
+                        <a href="{{route('offerView')}}" class="nav-link ">
                             <i class="fa fa-picture-o"></i>
                             <span class="title">Offer Gallery</span>
                         </a>

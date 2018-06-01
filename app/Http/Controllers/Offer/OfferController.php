@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Offer;
 use App\Http\Controllers\CustomTraits\OfferTrait;
 use App\Offer;
 use App\OfferStatus;
+use App\Seller;
+use App\SellerAddress;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +15,8 @@ use Illuminate\Support\Facades\Log;
 class OfferController extends Controller
 {
 use OfferTrait;
+
+    protected $perPage = 3;
     public function __construct()
     {
         $this->middleware('custom.auth');
@@ -24,6 +28,24 @@ use OfferTrait;
         }catch (\Exception $e){
             $data = [
                 'action' => 'Get offer manage view',
+                'exception' => $e->getMessage()
+            ];
+            Log::critical(json_encode($data));
+            abort(500);
+        }
+    }
+
+    public function getOfferView(Request $request){
+        try{
+            $user = Auth::user();
+            $seller = Seller::where('user_id', $user->id)->first();
+            $seller_address = SellerAddress::where('seller_id', $seller->id)->first();
+            $offers = Offer::where('seller_address_id', $seller_address->id)->paginate($this->perPage);
+            $offer_statuses = OfferStatus::where('type',Auth::user()->role->slug)->get();
+            return view('offer.view', compact('offers','offer_statuses'));
+        }catch (\Exception $e){
+            $data = [
+                'action' => 'Get offer Gallery view',
                 'exception' => $e->getMessage()
             ];
             Log::critical(json_encode($data));

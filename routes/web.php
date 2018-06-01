@@ -55,6 +55,7 @@ Route::group(['prefix' => 'group'], function(){
 });
 
 Route::group(['prefix' => 'offer'], function(){
+    Route::get('view','Offer\OfferController@getOfferView')->name('offerView');
     Route::post('listing',array('uses' => 'Offer\OfferController@getListing'));
     Route::get('manage','Offer\OfferController@getManageView')->name('offerListing');
     Route::get('create','Offer\OfferController@getCreateView');
