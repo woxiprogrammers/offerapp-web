@@ -14,7 +14,7 @@
             <div class="mt-action-body">
                 <div class="mt-action-row">
                     <div >
-                        <img class="img-thumbnail" src="{{($offer['offerImage'] == null) ? '/uploads/no_offer_image.jpg' : env('OFFER_IMAGE_UPLOAD').DIRECTORY_SEPARATOR.$offer['offer_id'].DIRECTORY_SEPARATOR.$offer['offerImage']}}" />
+                        <img class="img-thumbnail" src="{{($offer['offerImage'] == null) ? '/uploads/no_offer_image.jpg' : env('OFFER_IMAGE_UPLOAD').DIRECTORY_SEPARATOR.sha1($offer['offer_id']).DIRECTORY_SEPARATOR.$offer['offerImage']}}" />
                     </div>
 
                     <div class="mt-action-info ">

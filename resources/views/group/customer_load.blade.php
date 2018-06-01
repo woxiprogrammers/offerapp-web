@@ -10,7 +10,7 @@
     @foreach($members as $member)
         <div class="mt-action">
             <div class="mt-action-img">
-                <img class="img-circle" src="{{($member->profile_picture == null) ? '/uploads/user_profile_male.jpg' : env('CUSTOMER_PROFILE_IMAGE_UPLOAD').DIRECTORY_SEPARATOR.$member->id.DIRECTORY_SEPARATOR.$member->profile_picture}}" /> </div>
+                <img class="img-responsive" src="{{($member->profile_picture == null) ? '/uploads/user_profile_male.jpg' : env('CUSTOMER_PROFILE_IMAGE_UPLOAD').DIRECTORY_SEPARATOR.$member->id.DIRECTORY_SEPARATOR.$member->profile_picture}}" /> </div>
             <div class="mt-action-body">
                 <div class="mt-action-row">
                     <div class="mt-action-info ">

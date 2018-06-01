@@ -48,12 +48,6 @@ class MainCategoriesTableSeeder extends Seeder
                     'updated_at' => $now
                 ],
                 [
-                    'name' => 'Mobile & Accessories',
-                    'slug' => 'electronics',
-                    'created_at' => $now,
-                    'updated_at' => $now
-                ],
-                [
                     'name' => 'Food',
                     'slug' => 'food',
                     'created_at' => $now,
