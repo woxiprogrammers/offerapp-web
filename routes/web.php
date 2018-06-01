@@ -29,6 +29,10 @@ Route::group(['prefix' => 'register'], function(){
     Route::post('verifiyotp', 'Auth\OtpVerification@verifyOtp')->name('verifiy-otp');
 });
 
+Route::group(['prefix' => 'seller'], function(){
+    Route::get('profile','Seller\SellerController@getSellerProfile')->name('get-seller-profile');
+});
+
 Route::group(['prefix' => 'group'], function(){
     Route::get('manage','Group\GroupController@getManageView')->name('groupListing');
     Route::post('create','Group\GroupController@createGroup')->name('createGroup');

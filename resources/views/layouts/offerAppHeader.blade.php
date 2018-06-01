@@ -80,7 +80,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-default">
                         <li>
-                            <a href="#">
+                            <a href="{{route('get-seller-profile')}}">
                                 <i class="icon-user"></i> My Profile </a>
                         </li>
                         <li>

@@ -88,6 +88,13 @@ class SubCategoriesTableSeeder extends Seeder
                     'updated_at' => $now
                 ],
                 [
+                    'name' => 'Mobile & Accessories',
+                    'slug' => 'mobile-accessories',
+                    'category_id'=> DB::table('categories')->where('slug','electronics')->pluck('id')->first(),
+                    'created_at' => $now,
+                    'updated_at' => $now
+                ],
+                [
                     'name' => 'Refrigerator',
                     'slug' => 'refrigerator',
                     'category_id'=> DB::table('categories')->where('slug','electronics')->pluck('id')->first(),
