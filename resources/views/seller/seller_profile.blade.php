@@ -88,7 +88,7 @@
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN PAGE LEVEL SCRIPTS -->
     <script src="/assets/pages/scripts/portfolio-1.js" type="text/javascript"></script>
-    <script src="/assets/custom/seller/load_offer.js" type="text/javascript"></script>
+    <script src="/assets/custom/seller/load-offer.js" type="text/javascript"></script>
 
     <!-- END PAGE LEVEL SCRIPTS -->
 @endsection
