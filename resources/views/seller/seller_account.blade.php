@@ -213,11 +213,6 @@
     <!-- END CONTENT -->
 @endsection
 @section('javascript')
-    <script>
-        $('#verify-otp').click(function() {
-            $('#otp_verification').modal('show');
-        });
-    </script>
     <!-- BEGIN PAGE LEVEL PLUGINS -->
     <script src="../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
     <script src="../assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
