@@ -82,16 +82,16 @@
             </li>
 
             <li class="nav-item  ">
-                <a href="/offer/manage" class="nav-link nav-toggle">
+                <a href="{{route('get-seller-account')}}" class="nav-link nav-toggle">
                     <i class="icon-puzzle"></i>
-                    <span class="title"> Offer</span>
+                    <span class="title"> Seller Account</span>
                     <span class=""></span>
                 </a>
             </li>
             <li class="nav-item  ">
                 <a href="javascript:;" class="nav-link nav-toggle">
                     <i class="icon-diamond"></i>
-                    <span class="title">View Offer</span>
+                    <span class="title">Offer</span>
                     <span class="arrow"></span>
                 </a>
                 <ul class="sub-menu">
@@ -108,7 +108,7 @@
                         </a>
                     </li>
                     <li class="nav-item  ">
-                        <a href="#tableView" class="nav-link ">
+                        <a href="{{route('offerListing')}}" class="nav-link ">
                             <i class="fa fa-tasks"></i>
                             <span class="title">Offer Library</span>
                         </a>

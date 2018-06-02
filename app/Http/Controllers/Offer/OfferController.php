@@ -56,7 +56,13 @@ use OfferTrait;
     public function getListing(Request $request){
         try{
             $user = Auth::user();
-            $offerData = Offer::get();
+            if($user->role->slug == 'super-admin'){
+                $offerData = Offer::all();
+            }elseif($user->role->slug == 'seller'){
+                $seller = Seller::where('user_id', $user->id)->first();
+                $seller_address = SellerAddress::where('seller_id',$seller->id)->first();
+                $offerData = Offer::where('seller_address_id',$seller_address->id)->get();
+            }
             $iTotalRecords = count($offerData);
             $records = array();
             $records['data'] = array();

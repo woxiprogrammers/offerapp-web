@@ -32,10 +32,6 @@ class OtpVerification extends Controller
             }else{
 
                 $otp = $this->generateOtp();
-                $otpGen = new Otp();
-                $otpGen->mobile_no = $mobile_no;
-                $otpGen->otp = $otp;
-                $otpGen->save();
 
                 $apiKey = urlencode(env('SMS_KEY'));
 
@@ -43,7 +39,7 @@ class OtpVerification extends Controller
                 $numbers = array($request['mobile_no']);
                 $sender = urlencode('TXTLCL');
 
-                $message = rawurlencode('Your OTP is '.$otpGen->otp);
+                $message = rawurlencode('Your OTP is '.$otp);
 
                 $numbers = implode(',', $numbers);
 
@@ -58,6 +54,10 @@ class OtpVerification extends Controller
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                 $response = curl_exec($ch);
                 curl_close($ch);
+                $otpGen = new Otp();
+                $otpGen->mobile_no = $mobile_no;
+                $otpGen->otp = $otp;
+                $otpGen->save();
             }
             return view('auth.RegisterStep2',compact('mobile_no'));
         }catch (\Exception $e){
