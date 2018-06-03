@@ -12,6 +12,17 @@
             <div class="col-md-12 col-sm-9 col-xs-12 ">
                 <!-- BEGIN WIDGET GRADIENT -->
                 <div class="clearfix"></div>
+                @if(\Session::has('error'))
+                    <div class="alert alert-danger alert-block">
+                        <button type="button" class="close" data-dismiss="alert">x</button>
+                        <strong>{{ \Session::get('error') }}</strong>
+                    </div>
+                @elseif(\Session::has('success'))
+                    <div class="alert alert-success alert-block">
+                        <button type="button"  class="close" data-dismiss="alert">x</button>
+                        <strong>{{ \Session::get('success') }}</strong>
+                    </div>
+                @endif
                 <div id="carousel-example-generic-v1" class="carousel slide widget-carousel" data-ride="carousel">
                     <!-- Indicators -->
                     <ol class="carousel-indicators">

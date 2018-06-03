@@ -22,6 +22,7 @@ class SellerController extends Controller
     protected $perPage = 3;
     public function __construct()
     {
+
         $this->middleware('custom.auth');
     }
 
@@ -47,10 +48,10 @@ class SellerController extends Controller
             $floors = Floor::all();
             $seller_address = SellerAddress::where('seller_id', $seller->id)->first();
             if(count($seller_address)>0){
-/*                $request->session()->flash('success','Your Account is Set You Can Update it');*/
+                $request->session()->flash('success','Your Account is Set You Can Update it');
                 return view('seller.seller_account', compact('seller_address','seller','floors'));
             }else{
-/*                $request->session()->flash('error','Please Update your Account');*/
+                $request->session()->flash('error','Please Update your Account');
                 return view('seller.seller_account', compact('seller','floors'));
             }
 
