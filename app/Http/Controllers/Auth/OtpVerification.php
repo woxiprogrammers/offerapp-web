@@ -34,20 +34,14 @@ class OtpVerification extends Controller
                 $otp = $this->generateOtp();
 
                 $apiKey = urlencode(env('SMS_KEY'));
-
                 // Message details
                 $numbers = array($request['mobile_no']);
                 $sender = urlencode('TXTLCL');
-
                 $message = rawurlencode('Your OTP is '.$otp);
-
                 $numbers = implode(',', $numbers);
-
                 // Prepare data for POST request
                 $data = array('apikey' => $apiKey, 'numbers' => $numbers, "sender" => $sender, "message" => $message);
-
                 // Send the POST request with cURL
-
                 $ch = curl_init('https://api.textlocal.in/send/');
                 curl_setopt($ch, CURLOPT_POST, true);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
