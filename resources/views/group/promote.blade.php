@@ -54,16 +54,17 @@
                         </div>
                         <div class="portlet-body">
                             <div class="tab-content">
-                                @if(session()->has('success'))
-                                    <div class="alert alert-success">{{ session()->get('success') }}</div>
-                                @elseif(session()->has('error'))
-                                    <div class="alert alert-danger">{{ session()->get('error') }}</div>
+                                @if(\Session::has('success'))
+                                    <div class="alert alert-success">{{ \Session::get('success') }}</div>
+                                @elseif(\Session::has('error'))
+                                    <div class="alert alert-danger">{{ \Session::get('error') }}</div>
                                 @endif
                                 <div class="tab-pane active" id="tab_promote_offer_create">
                                     <!-- BEGIN: Create Group-->
                                     <div class="mt-actions">
                                         <div class="row">
                                             <div class="col-md-6 col-sm-6 ">
+                                                @if(count($groups)>0)
                                                 <form class="profile-form" action="{{ route('promoteOffer') }}" method="post" role="form">
                                                     {{ csrf_field() }}
                                                     <div class="form-group{{ $errors->has('group_id') ? ' has-error' : '' }}" id="group_id">
@@ -75,8 +76,7 @@
                                                                 <ul class="list-unstyled">
                                                                     @foreach($groups as $group)
                                                                         <li>
-                                                                            <label>
-                                                                                <input type="checkbox" name="group_id[]" value="{{$group->id}}">{{$group->name}}</label>
+                                                                                <input type="checkbox" name="group_id[]" value="{{$group->id}}" required>{{$group->name}}</input>
                                                                         </li>
                                                                     @endforeach
                                                                 </ul>
@@ -89,12 +89,11 @@
                                                         <span class="required"> * </span>
                                                         <div class="input-icon">
                                                             <i class="fa fa-cubes"></i>
-                                                            <select name="offer_id" class="form-control" id="offer_id">
-                                                                <option value="null">--Select Offer-- </option>
+                                                            <select name="offer_id" class="form-control" id="offer_id" required>
 
-                                                            @foreach($offers as $offer)
+                                                                @foreach($offers as $offer)
                                                                     <option value="{{$offer->id}}">{{$offer->offerType->name}}</option>
-                                                            @endforeach
+                                                                @endforeach
                                                             </select>
 
                                                             @if ($errors->has('offer_id'))
@@ -109,6 +108,10 @@
                                                         <button type="submit" class="btn blue btn-outline"> Promote </button>
                                                     </div>
                                                 </form>
+
+                                                @else
+                                                    <p>There Are No Groups Please Create First</p>
+                                                @endif
                                             </div>
                                         </div>
 

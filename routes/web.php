@@ -31,6 +31,11 @@ Route::group(['prefix' => 'register'], function(){
 
 Route::group(['prefix' => 'seller'], function(){
     Route::get('profile','Seller\SellerController@getSellerProfile')->name('get-seller-profile');
+    Route::get('account','Seller\SellerController@getSellerAccount')->name('get-seller-account');
+    Route::post('account','Seller\SellerController@setSellerAccount')->name('set-seller-account');
+    Route::post('change-password','Seller\SellerController@changePassword')->name('change-password');
+    Route::post('shop-image','Seller\SellerController@changeShopImage')->name('changeShopImage');
+
 });
 
 Route::group(['prefix' => 'group'], function(){

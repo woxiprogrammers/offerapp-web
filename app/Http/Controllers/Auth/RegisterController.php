@@ -32,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -55,15 +55,20 @@ class RegisterController extends Controller
     {
         try{
             //Validates data
-            $this->validator($request->all())->validate();
-
+            //return $this->validator($request->all())->validate();
+             $this->validator($request->all(),[
+                'first_name' => 'required|string|max:255',
+                'last_name' => 'required|string|max:255',
+                'email' => 'string|email|max:255',
+                'password' => 'required|string|min:6',
+                 'rpassword' => 'required|min:6|same:password',
+                'mobile_no' => 'required|required|min:10|max:10|regex:/[0-9]/|unique:users',
+            ]);
             //Create user
             $user = $this->createUser($request->all());
-
             //Authenticates user
-            $credentials = $request->except('mobile_no', 'password');
-            Auth::attempt($credentials);
-
+            /*$credentials = $request->except('mobile_no', 'password');
+            Auth::attempt($credentials);*/
             //Redirects user
             return redirect($this->redirectTo);
         }catch (\Exception $e){
@@ -80,13 +85,15 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         try{
-            return Validator::make($data, [
+
+            return  Validator::make($data, [
                 'first_name' => 'required|string|max:255',
                 'last_name' => 'required|string|max:255',
                 'email' => 'string|email|max:255',
                 'password' => 'required|string|min:6',
                 'mobile_no' => 'required',
             ]);
+
         }catch(\Exception $e){
             $input = [
                 'action' => 'validate user',

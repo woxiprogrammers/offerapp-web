@@ -32,32 +32,26 @@ class OtpVerification extends Controller
             }else{
 
                 $otp = $this->generateOtp();
-                $otpGen = new Otp();
-                $otpGen->mobile_no = $mobile_no;
-                $otpGen->otp = $otp;
-                $otpGen->save();
 
                 $apiKey = urlencode(env('SMS_KEY'));
-
                 // Message details
                 $numbers = array($request['mobile_no']);
                 $sender = urlencode('TXTLCL');
-
-                $message = rawurlencode('Your OTP is '.$otpGen->otp);
-
+                $message = rawurlencode('Your OTP is '.$otp);
                 $numbers = implode(',', $numbers);
-
                 // Prepare data for POST request
                 $data = array('apikey' => $apiKey, 'numbers' => $numbers, "sender" => $sender, "message" => $message);
-
                 // Send the POST request with cURL
-
                 $ch = curl_init('https://api.textlocal.in/send/');
                 curl_setopt($ch, CURLOPT_POST, true);
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                 $response = curl_exec($ch);
                 curl_close($ch);
+                $otpGen = new Otp();
+                $otpGen->mobile_no = $mobile_no;
+                $otpGen->otp = $otp;
+                $otpGen->save();
             }
             return view('auth.RegisterStep2',compact('mobile_no'));
         }catch (\Exception $e){
