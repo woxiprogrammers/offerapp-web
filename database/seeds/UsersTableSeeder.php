@@ -44,7 +44,7 @@ class UsersTableSeeder extends Seeder
                 'created_at' => $now,
                 'updated_at' => $now
 
-            ],
+            ]/*,
             [
                 'role_id' => $sellerRoleId,
                 'first_name' => 'Sonali',
@@ -87,7 +87,7 @@ class UsersTableSeeder extends Seeder
                 'mobile_no' => '6666666666',
                 'created_at' => $now,
                 'updated_at' => $now
-            ]
+            ]*/
         ]);
     }
 }

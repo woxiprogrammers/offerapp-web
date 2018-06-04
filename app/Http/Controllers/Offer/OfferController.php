@@ -79,7 +79,7 @@ use OfferTrait;
                                                    <i class="fa fa-check-square-o"></i>  View 
                                                 </a>';
                 } else {
-                    $actionDropDown = '<a href="/offer/edit/' . $offerData[$pagination]->id . '" onclick="changeStatus(this)" class="btn btn-outline red btn-sm" >
+                    $actionDropDown = '<a href="javascript:void(0)" class="btn btn-outline red btn-sm" >
                                                    <i class="fa fa-edit"></i>  Edit 
                                                 </a>';
                 }

@@ -25,7 +25,21 @@ trait OfferTrait{
     public function getCreateView(Request $request){
         try{
             $offerTypes = OfferType::select('id','name')->get()->toArray();
-            $categories = Category::whereNotNull('category_id')->select('id','name')->get()->toArray();
+            $subCategories = Category::whereNotNull('category_id')->select('id','name','category_id')->get()->toArray();
+            $mainCategoriesWithOutSubCategory = Category::whereIn('slug',['gym','sports'])->select('id','name','category_id')->get()->toArray();
+            $subCategories = array_merge($subCategories,$mainCategoriesWithOutSubCategory);
+            $iterator = 0;
+            foreach ($subCategories as $key => $subCategory) {
+                if($subCategory['category_id'] != null){
+                    $mainCategoryName = Category::where('id',$subCategory['category_id'])->pluck('name')->first();
+                    $categories[$iterator]['id'] = $subCategory['id'];
+                    $categories[$iterator]['name'] = $mainCategoryName.' - '.$subCategory['name'];
+                }else{
+                    $categories[$iterator]['id'] = $subCategory['id'];
+                    $categories[$iterator]['name'] = $subCategory['name'];
+                }
+                $iterator++;
+            }
             $sellerAddresses = SellerAddress::where('is_active', true)->get();
             return view('offer.create')->with(compact('offerTypes','categories','sellerAddresses'));
         }catch (\Exception $e){
