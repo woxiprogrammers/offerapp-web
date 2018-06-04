@@ -29,6 +29,15 @@ Route::group(['prefix' => 'register'], function(){
     Route::post('verifiyotp', 'Auth\OtpVerification@verifyOtp')->name('verifiy-otp');
 });
 
+Route::group(['prefix' => 'seller'], function(){
+    Route::get('profile','Seller\SellerController@getSellerProfile')->name('get-seller-profile');
+    Route::get('account','Seller\SellerController@getSellerAccount')->name('get-seller-account');
+    Route::post('account','Seller\SellerController@setSellerAccount')->name('set-seller-account');
+    Route::post('change-password','Seller\SellerController@changePassword')->name('change-password');
+    Route::post('shop-image','Seller\SellerController@changeShopImage')->name('changeShopImage');
+
+});
+
 Route::group(['prefix' => 'group'], function(){
     Route::get('manage','Group\GroupController@getManageView')->name('groupListing');
     Route::post('create','Group\GroupController@createGroup')->name('createGroup');
@@ -51,6 +60,7 @@ Route::group(['prefix' => 'group'], function(){
 });
 
 Route::group(['prefix' => 'offer'], function(){
+    Route::get('view','Offer\OfferController@getOfferView')->name('offerView');
     Route::post('listing',array('uses' => 'Offer\OfferController@getListing'));
     Route::get('manage','Offer\OfferController@getManageView')->name('offerListing');
     Route::get('create','Offer\OfferController@getCreateView');

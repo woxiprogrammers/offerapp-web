@@ -133,7 +133,7 @@ class GroupController extends Controller
             $customer_id = Customer::where('user_id',$user_id)->pluck('id')->first();
             $check_customer_group_count = GroupCustomer::where('customer_id', $customer_id)->where('group_id',$group_id)->pluck('id');
             if(count($check_customer_group_count) > 0) {
-                Session::flash('error','Please enter a valid mobile no');
+                $request->session()->flash('error','Please enter a valid mobile no');
                 return redirect()->back()->with('error', 'Please enter a valid mobile no');
 
             }elseif(count($user_id) > 0 && count($customer_id) > 0){
@@ -165,6 +165,7 @@ class GroupController extends Controller
                 $customer_group->delete();
                 return redirect()->back();
             }else{
+                $request->session()->flash('error','No Such Member for this Group Exists');
                 $error = "No Such Member for this Group Exists";
                 return redirect()->back()->with('error', $error);
             }
@@ -190,6 +191,7 @@ class GroupController extends Controller
                 $group_offer->delete();
                 return redirect()->back();
             }else{
+                $request->session()->flash('error','No Such Offer for this Group Exists');
                 $error = "No Such Offer for this Group Exists";
                 return redirect()->back()->with('error', $error);
             }

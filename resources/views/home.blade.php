@@ -9,40 +9,20 @@
 
         <div class="page-bar">
         <div class="row ">
-          <!-- <div class="col-md-12 col-sm-9 col-xs-12  margin-bottom-20">
-              <div class="portlet light portlet-fit bordered">
-                  <div >
-                      <div class="mt-element-step ">
-                          <div class="row step-line ">
-                              <div class="col-md-4 mt-step-col first done">
-                                  <div class="mt-step-number bg-white">
-                                      <a href="#profile"><i class="fa fa-user-plus"></i></a>
-                                  </div>
-                                  <div class="mt-step-title uppercase font-grey-cascade">Profile</div>
-                                  <div class="mt-step-content font-grey-cascade">Setup the Vendor Profile</div>
-                              </div>
-                              <div class="col-md-4 mt-step-col active">
-                                  <div class="mt-step-number bg-white">
-                                      <a href="#offer"><i class="fa fa-cubes"></i></a>
-                                  </div>
-                                  <div class="mt-step-title uppercase font-grey-cascade">Offer</div>
-                                  <div class="mt-step-content font-grey-cascade">Create your offer for your Customer</div>
-                              </div>
-                              <div class="col-md-4 mt-step-col last">
-                                  <div class="mt-step-number bg-white">
-                                    <a href="#deploy"><i class="fa fa-group"></i></a>
-                                  </div>
-                                  <div class="mt-step-title uppercase font-grey-cascade">Deploy</div>
-                                  <div class="mt-step-content font-grey-cascade">Receive Customer Response</div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div> -->
             <div class="col-md-12 col-sm-9 col-xs-12 ">
                 <!-- BEGIN WIDGET GRADIENT -->
                 <div class="clearfix"></div>
+                @if(\Session::has('error'))
+                    <div class="alert alert-danger alert-block">
+                        <button type="button" class="close" data-dismiss="alert">x</button>
+                        <strong>{{ \Session::get('error') }}</strong>
+                    </div>
+                @elseif(\Session::has('success'))
+                    <div class="alert alert-success alert-block">
+                        <button type="button"  class="close" data-dismiss="alert">x</button>
+                        <strong>{{ \Session::get('success') }}</strong>
+                    </div>
+                @endif
                 <div id="carousel-example-generic-v1" class="carousel slide widget-carousel" data-ride="carousel">
                     <!-- Indicators -->
                     <ol class="carousel-indicators">

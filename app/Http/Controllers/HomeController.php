@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Seller;
+use App\SellerAddress;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class HomeController extends Controller
 {
@@ -21,10 +25,25 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         try{
-            return view('home');
+            $user = Auth::user();
+            if($user->role->slug == 'super-admin'){
+                return view('home');
+            }else{
+                $seller = Seller::where('user_id', $user->id)->first();
+                $seller_address = SellerAddress::where('seller_id', $seller->id)->first();
+
+                if(isset($seller_address)){
+                    return view('home');
+
+                }else{
+                    $request->session()->flash('error','Please Update your Account');
+                    return view('home');
+                }
+            }
+
 
         }catch (\Exception $e){
             $data = [
