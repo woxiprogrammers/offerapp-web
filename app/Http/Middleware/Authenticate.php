@@ -25,13 +25,18 @@ class Authenticate
         try{
             if (Auth::guard($guard)->check()) {
                 $user = Auth::user();
-                $seller = Seller::where('user_id', $user->id)->first();
-                $seller_address = SellerAddress::where('seller_id', $seller->id)->first();
-                if(isset($seller_address) || $request->route()->getName() == 'get-seller-account' || $request->route()->getName() == 'set-seller-account' ){
-                    return $next($request);
+                if($user->role->slug == 'seller'){
+                    $seller = Seller::where('user_id', $user->id)->first();
+                    $seller_address = SellerAddress::where('seller_id', $seller->id)->first();
+                    if(isset($seller_address) || $request->route()->getName() == 'get-seller-account' || $request->route()->getName() == 'set-seller-account' ){
+                        return $next($request);
+                    }else{
+                        return redirect('/');
+                    }
                 }else{
-                    return redirect('/');
+                    return $next($request);
                 }
+
             }else{
                 return redirect('/');
             }
