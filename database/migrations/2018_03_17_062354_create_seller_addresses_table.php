@@ -25,8 +25,8 @@ class CreateSellerAddressesTable extends Migration
             $table->string('zipcode',255)->nullable();
             $table->string('city',255)->nullable();
             $table->string('state',255)->nullable();
-            $table->decimal('longitude')->nullable();
-            $table->decimal('latitude')->nullable();
+            $table->double('longitude')->nullable();
+            $table->double('latitude')->nullable();
             $table->boolean('is_active');
             $table->timestamps();
         });
