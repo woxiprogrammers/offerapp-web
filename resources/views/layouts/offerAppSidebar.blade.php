@@ -101,12 +101,12 @@
                             <span class="title">Offer Gallery</span>
                         </a>
                     </li>
-                    <li class="nav-item  ">
+                    <!-- <li class="nav-item  ">
                         <a href="#mapView" class="nav-link ">
                             <i class="fa fa-map-o"></i>
                             <span class="title">Offer Space</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li class="nav-item  ">
                         <a href="{{route('offerListing')}}" class="nav-link ">
                             <i class="fa fa-tasks"></i>
