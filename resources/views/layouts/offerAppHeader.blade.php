@@ -21,7 +21,7 @@
             <ul class="nav navbar-nav pull-right">
                 <!-- BEGIN NOTIFICATION DROPDOWN -->
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
+                {{--<li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                         <i class="icon-bell"></i>
                         <span class="badge badge-default"> 7 </span>
@@ -29,16 +29,16 @@
                     <ul class="dropdown-menu">
                         <li class="external">
                             <h3>
-                                <span class="bold">7 pending</span> notifications</h3>
+                                <span class="bold">57 pending</span> notifications</h3>
                             <a href="#">view all</a>
                         </li>
 
                     </ul>
-                </li>
+                </li>--}}
                 <!-- END NOTIFICATION DROPDOWN -->
                 <!-- BEGIN INBOX DROPDOWN -->
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                <li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
+                {{--<li class="dropdown dropdown-extended dropdown-inbox" id="header_inbox_bar">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                         <i class="icon-envelope-open"></i>
                         <span class="badge badge-default"> 4 </span>
@@ -51,11 +51,11 @@
                         </li>
 
                     </ul>
-                </li>
+                </li>--}}
                 <!-- END INBOX DROPDOWN -->
                 <!-- BEGIN TODO DROPDOWN -->
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                <li class="dropdown dropdown-extended dropdown-tasks" id="header_task_bar">
+                {{--<li class="dropdown dropdown-extended dropdown-tasks" id="header_task_bar">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                         <i class="icon-calendar"></i>
                         <span class="badge badge-default"> 3 </span>
@@ -68,7 +68,7 @@
                         </li>
 
                     </ul>
-                </li>
+                </li>--}}
                 <!-- END TODO DROPDOWN -->
                 <!-- BEGIN USER LOGIN DROPDOWN -->
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
@@ -92,11 +92,11 @@
                 <!-- END USER LOGIN DROPDOWN -->
                 <!-- BEGIN QUICK SIDEBAR TOGGLER -->
                 <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                <li class="dropdown dropdown-quick-sidebar-toggler">
+                {{--<li class="dropdown dropdown-quick-sidebar-toggler">
                     <a href="" class="dropdown-toggle">
                         <i class="icon-logout"></i>
                     </a>
-                </li>
+                </li>--}}
                 <!-- END QUICK SIDEBAR TOGGLER -->
             </ul>
         </div>
