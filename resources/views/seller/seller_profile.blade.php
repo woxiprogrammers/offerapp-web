@@ -30,7 +30,7 @@
                                 <ul class="cbp-slider-wrap">
                                     <li class="cbp-slider-item">
                                         <a href="" class="cbp-lightbox">
-                                            <img src="{{($seller_address->sellerAddressImage->first() == null) ? '/uploads/user_profile_male.jpg' : env('SELLER_ADDRESS_IMAGE_UPLOAD') . sha1($seller_address->id).DIRECTORY_SEPARATOR.$seller_address->sellerAddressImage->first()}}"  alt="">
+                                            <img src="{{($seller_address->sellerAddressImage->first()->name == null) ? '/uploads/user_profile_male.jpg' : env('SELLER_ADDRESS_IMAGE_UPLOAD') . sha1($seller_address->id).DIRECTORY_SEPARATOR.$seller_address->sellerAddressImage->first()->name}}"  alt="">
                                         </a>
                                     </li>
                                 </ul>
